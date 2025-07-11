@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className="bg-[#f7dd72]">
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
-        <div className="grid gap-10 items-center row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid  items-center row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 items-center">
             <Link to="/" className="flex items-center gap-2">
               <img src={Logo} alt="Logo" className="w-20" />
@@ -15,7 +15,7 @@ const Footer = () => {
               </h1>
             </Link>
 
-            <div className="mt-6 lg:max-w-sm">
+            <div className="mt-6 lg:max-w-lg">
               <p className="text-sm text-gray-800">
                 <span className="font-hoover text-lg text-[#FF02CB]">EliteClub</span> is your all-in-one solution for managing club memberships, court/session bookings, payments, and admin operations.
               </p>
@@ -26,13 +26,33 @@ const Footer = () => {
           </div>
 
           {/* Contacts and Social side by side on md+ screens */}
-          <div className="sm:col-span-2 flex flex-col md:flex-row justify-between gap-10">
+          <div className="sm:col-span-2 flex flex-col flex-wrap md:flex-row justify-between gap- mt-10">
+            {/* Features */}
+            <div className="text-sm mb-6">
+              <p className="text-2xl font-bold tracking-wide text-[#FF02CB] mb-4">Features</p>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/about-us" className="text-gray-700 hover:text-[#FF02CB] transition">About Us</Link>
+                </li>
+                <li>
+                  <Link to="/blogs" className="text-gray-700 hover:text-[#FF02CB] transition">Blogs</Link>
+                </li>
+                <li>
+                  <Link to="/events" className="text-gray-700 hover:text-[#FF02CB] transition">Events</Link>
+                </li>
+                <li>
+                  <Link to="/membership" className="text-gray-700 hover:text-[#FF02CB] transition">Membership</Link>
+                </li>
+              </ul>
+            </div>
+
+
             {/* Contacts */}
-            <div className="space-y-2 text-sm">
+            <div className="mb-6 text-sm">
               <p className="text-2xl font-bold tracking-wide text-[#FF02CB]">
                 Contacts
               </p>
-              <div className="flex">
+              <div className="flex my-1">
                 <p className="mr-1 text-gray-700 font-semibold">Phone:</p>
                 <a
                   href="tel:850-123-5021"
@@ -43,7 +63,7 @@ const Footer = () => {
                   850-123-5021
                 </a>
               </div>
-              <div className="flex">
+              <div className="flex mb-1">
                 <p className="mr-1 text-gray-700 font-semibold">Email:</p>
                 <a
                   href="mailto:info@eliteclub.mail"
