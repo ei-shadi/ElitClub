@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../assets/Logo.png";
 import { FaHome } from "react-icons/fa";
-import { FcSportsMode } from "react-icons/fc";
 import { PiSealQuestionFill } from "react-icons/pi";
 import Button from "../shared/Button";
+import { FaPersonRunning } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
-    { to: "/courts", title: "Courts", icon: FcSportsMode },
+    { to: "/courts", title: "Courts", icon: FaPersonRunning },
     { to: "/about-us", title: "About Us", icon: PiSealQuestionFill },
   ];
 
@@ -21,39 +21,37 @@ const Navbar = () => {
         to={to}
         title={title}
         className={({ isActive }) =>
-          `flex items-center gap-1.5 transition-all ${isActive
-            ? "text-2xl font-extrabold text-[#FF02CB] border-b-4 rounded px-4 pb-0.5"
-            : "italic font-bold text-lg hover:text-[#5ab1bb] hover:scale-130 ease-in-out duration-200"
+          `flex items-center gap-2 transition-all ${
+            isActive
+              ? "text-xl font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
+              : "italic font-bold text-xl hover:text-[#5ab1bb] hover:scale-125 duration-200"
           }`
         }
         onClick={() => setIsMenuOpen(false)}
       >
-        <Icon size={22} />
+        <Icon size={24} />
         {title}
       </NavLink>
     </li>
   ));
 
   return (
-    <div className="px-10 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-6 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
         <Link to="/">
           <div className="flex items-center gap-2">
             <img className="w-14 md:w-20" src={Logo} alt="Logo" />
-            <h1 className="text-4xl hidden md:block bg-gradient-to-br from-[#1e152a] to-[#5ab1bb] bg-clip-text text-transparent">
-              Sport<span className="text-[#5]">Nexus</span>
+            <h1 className="text-3xl md:text-4xl bg-gradient-to-br from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
+              EliteClub
             </h1>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="items-center hidden space-x-14 lg:flex">
+        <ul className="items-center hidden space-x-12 lg:flex">
           {centerNavLinks}
           <div className="hidden lg:flex">
-            <Link
-              to="/sign-in"
-              title="Sign in"
-            >
+            <Link to="/sign-in" title="Sign in">
               <Button text="Sign in" />
             </Link>
           </div>
@@ -64,7 +62,7 @@ const Navbar = () => {
           <button
             aria-label="Open Menu"
             title="Open Menu"
-            className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+            className="p-2 -mr-1 transition duration-200 rounded focus:outline-none hover:bg-gray-100"
             onClick={() => setIsMenuOpen(true)}
           >
             <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
@@ -85,47 +83,51 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Slide-in Mobile Menu with Transparent & Blurred Background */}
+      {/* Mobile Slide-in Menu */}
       <div
-        className={`fixed top-0 left-0 z-50 w-full h-screen bg-white/60 backdrop-blur-md transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed top-0 left-0 z-50 w-full h-screen bg-white/20 backdrop-blur-md transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
-        <div className="p-6 flex flex-col items-center justify-start h-full">
-          <div className="flex items-center justify-between w-full mb-8">
+        <div className="p-6 flex flex-col items-center justify-center h-full">
+          {/* Logo top left */}
+          <div className="absolute top-6 left-6 flex items-center gap-2">
             <Link
               to="/"
               className="flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
               <img src={Logo} className="w-14" alt="Logo" />
-              <h1 className="text-3xl font-bold tracking-wide text-gray-800">
-                Sport<span className="text-[#5ab1bb]">Nexus</span>
+              <h1 className="text-3xl md:text-4xl bg-gradient-to-br from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
+                EliteClub
               </h1>
             </Link>
-            <button
-              aria-label="Close Menu"
-              title="Close Menu"
-              className="p-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <svg className="w-6 text-gray-600" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3
-                c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3
-                c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-                />
-              </svg>
-            </button>
           </div>
 
-          <nav className="flex flex-col items-center space-y-6 w-full">
-            <ul className="flex flex-col items-center space-y-4 w-full">{centerNavLinks}</ul>
-            <Link
-              to="/sign-in"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Button text="Sign In" />
+          {/* Close button top right */}
+          <button
+            aria-label="Close Menu"
+            title="Close Menu"
+            className="absolute top-6 right-6 p-2 transition duration-200 rounded hover:bg-gray-200 focus:outline-none"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <svg className="w-6 text-gray-600" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3-6.3,6.3
+              c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3 6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3
+              c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
+              />
+            </svg>
+          </button>
+
+          {/* Navigation links vertically centered */}
+          <nav className="flex flex-col items-center space-y-6 w-full mt-12">
+            <ul className="flex flex-col items-center space-y-4 w-full">
+              {centerNavLinks}
+            </ul>
+            <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
+              <Button text="Sign In" className="text-lg px-6 py-2" />
             </Link>
           </nav>
         </div>
