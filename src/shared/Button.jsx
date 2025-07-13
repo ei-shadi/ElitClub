@@ -24,8 +24,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     gap: 4px;
     padding: 10px 40px;
-    border: 4px solid;
-    font-size: 20px;
+    font-size: 24px;
     background-color: #4e6766;
     border-radius: 10px;
     font-weight: 600;

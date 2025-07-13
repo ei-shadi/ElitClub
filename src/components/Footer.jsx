@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="sm:col-span-2 items-center">
             <Link to="/" className="flex items-center gap-2">
               <img src={Logo} alt="Logo" className="w-20" />
-              <h1 className="text-4xl bg-gradient-to-br from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
+              <h1 className="text-4xl bg-gradient-to-b from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
                 EliteClub
               </h1>
             </Link>
@@ -29,8 +29,8 @@ const Footer = () => {
           <div className="sm:col-span-2 flex flex-col flex-wrap md:flex-row justify-between gap- mt-10">
             {/* Features */}
             <div className="text-sm mb-6">
-              <p className="text-2xl font-bold tracking-wide text-[#FF02CB] mb-4">Features</p>
-              <ul className="space-y-2">
+              <p className="text-2xl font-bold tracking-wide text-[#FF02CB] mb-2">Features</p>
+              <ul className="space-y-1">
                 <li>
                   <Link to="/about-us" className="text-gray-700 hover:text-[#FF02CB] transition">About Us</Link>
                 </li>
