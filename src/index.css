@@ -6,7 +6,7 @@
   themes: light --default;
 }
 
-h1,h2,button, .font-hoover{
+h1,h2,h3,button, .font-hoover{
   font-family: 'Hoover', sans-serif;
 }
 

@@ -10,7 +10,7 @@ const RootLayout = () => {
         <Navbar />
       </header>
 
-      <main className="h-screen">
+      <main className="b">
         <Outlet />
       </main>
 
