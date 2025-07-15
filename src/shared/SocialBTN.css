@@ -28,10 +28,12 @@
   background-color: #0866FF;
   transform: scale(1.4);
 }
+
 .containerOne:hover {
-  background-color: #d62976;
+  background-color: #f81d96;
   transform: scale(1.4);
 }
+
 
 .containerTwo:hover {
   background-color: #00acee;

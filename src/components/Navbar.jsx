@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../assets/Logo.png";
 import { FaHome } from "react-icons/fa";
@@ -15,7 +15,7 @@ const Navbar = () => {
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
     { to: "/courts", title: "Courts", icon: FaPersonRunning },
-    { to: "/about-us", title: "About Us", icon: PiSealQuestionFill },
+    { to: "/faq", title: "FAQ", icon: PiSealQuestionFill },
   ];
 
   const centerNavLinks = navLinks.map(({ to, title, icon: Icon }) => (
@@ -41,7 +41,7 @@ const Navbar = () => {
     <div 
     className="fixed top-0 left-0 w-full z-50  backdrop-blur-md transition-all duration-500">
 
-      <div className="px-6 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
+      <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link to="/">
             <div className="flex items-center gap-2">

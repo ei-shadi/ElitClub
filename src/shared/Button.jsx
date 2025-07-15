@@ -23,13 +23,13 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 10px 40px;
+    padding: 8px 40px;
     font-size: 24px;
     background-color: #4e6766;
     border-radius: 10px;
     font-weight: 600;
     color: white;
-    box-shadow: 0 0 0 2px ;
+    
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);

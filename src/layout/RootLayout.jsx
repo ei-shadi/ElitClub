@@ -1,20 +1,23 @@
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
 import Footer from "../components/Footer";
+import ScrollToTop from "../shared/ScrollToTop";
 
 
 const RootLayout = () => {
   return (
     <>
+      <ScrollToTop />
+
       <header>
         <Navbar />
       </header>
 
-      <main className="b">
+      <main className="bg-[#d9d2c3d2]">
         <Outlet />
       </main>
 
-      <footer>
+      <footer >
         <Footer />
       </footer>
     </>
