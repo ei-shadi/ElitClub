@@ -10,7 +10,7 @@ const AboutClub = () => {
           About <span className="text-[#FF02CB]">Us</span>
           <TbLocationFilled className='rotate-180 text-4xl md:text-5xl'/>
         </h2>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl font-semibold italic text-gray-700 mb-14 leading-relaxed text-center">
+        <p className="max-w-2xl mx-auto text-lg md:text-xl font-semibold italic text-gray-700 mb-10 leading-relaxed text-center">
           Welcome to EliteClub, where passion meets performance. As the premier sports hub, we strive to foster talent, wellness, and community.
         </p>
 

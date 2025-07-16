@@ -39,14 +39,14 @@ const Navbar = () => {
 
   return (
     <div 
-    className="fixed top-0 left-0 w-full z-50  backdrop-blur-md transition-all duration-500">
+    className="fixed top-0 left-0 w-full z-500  backdrop-blur transition-all duration-500">
 
       <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link to="/">
             <div className="flex items-center gap-2">
               <img className="w-14 md:w-20" src={Logo} alt="Logo" />
-              <h1 className="text-3xl md:text-4xl bg-gradient-to-b from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl bg-gradient-to-b from-black to-[#FF02CB] bg-clip-text text-transparent">
                 EliteClub
               </h1>
             </div>

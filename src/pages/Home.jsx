@@ -1,6 +1,7 @@
 import Hero from "../components/Home/Hero";
 import AboutClub from "../components/Home/AboutClub";
 import LocationSection from "../components/Home/LocationSection";
+import DiscountCoupons from "../components/Home/DiscountCoupons";
 
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
       <AboutClub />
       {/* Location Section */}
       <LocationSection />
+      {/* Promotions Section / Discount Coupons */}
+      <DiscountCoupons />
     </div>
   );
 };
