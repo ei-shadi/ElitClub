@@ -23,7 +23,7 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 6px 40px;
+    padding: 10px 40px;
     font-size: 24px;
     background-color: red;
     border-radius: 10px;

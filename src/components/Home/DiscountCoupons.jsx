@@ -2,19 +2,27 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../../shared/Button';
 import { TbLocationFilled } from 'react-icons/tb';
-import Img1 from '../../assets/card1.jpg';
-import Img2 from '../../assets/card2.jpg';
-import Img3 from '../../assets/card3.jpg';
 
-
-const ChevronLeftIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+const ModernChevronLeftIcon = () => (
+  <svg
+    className="w-7 h-7 text-white"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="4"
+    viewBox="0 0 24 24"
+  >
     <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-const ChevronRightIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+const ModernChevronRightIcon = () => (
+  <svg
+    className="w-7 h-7 text-white"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="4"
+    viewBox="0 0 24 24"
+  >
     <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
@@ -22,28 +30,34 @@ const ChevronRightIcon = () => (
 const cardData = [
   {
     id: 1,
-    imageUrl: 'https://i.ibb.co/WvNNtrV0/card1.jpg',
+    imageUrl: 'https://i.ibb.co/Wpv3Yr9J/card1.jpg',
     coupon: 'SPORT5',
     discount: '5%',
     description: 'Save 5% on our Sports Club Management System with code SPORT5.',
   },
   {
     id: 2,
-    imageUrl: 'https://i.ibb.co/TZpTmw5/card2.jpg',
+    imageUrl: 'https://i.ibb.co/m5gwfHWb/card2.jpg',
     coupon: 'CLUB10',
     discount: '10%',
     description: 'Get 10% off when you manage your single club with CLUB10!',
   },
   {
     id: 3,
-    imageUrl: 'https://i.ibb.co/G4GFvz98/card3.jpg',
+    imageUrl: 'https://i.ibb.co/Ps1Zzg90/card3.jpg',
     coupon: 'GYM15',
     discount: '15%',
     description: 'Upgrade your club’s system and save 15% using GYM15.',
   },
 ];
 
-export default function Carousel() {
+
+// DiscountCoupons Button
+const handleCouponClaim = () => {
+  alert('Coupon code copied to clipboard!');
+}
+
+const DiscountCoupons = () => {
   const [activeIndex, setActiveIndex] = useState(1);
   const autoplayRef = useRef(null);
 
@@ -74,13 +88,11 @@ export default function Carousel() {
     <div className="relative w-full max-w-7xl mx-auto py-10 select-none pb-32">
       <h2 className="text-4xl md:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex items-center justify-center gap-3">
         Discount <span className="text-[#FF02CB]">Coupons</span>
-        <TbLocationFilled className='rotate-180 text-4xl md:text-5xl' />
+        <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
       </h2>
       <p className="max-w-3xl px-4 mx-auto text-lg md:text-xl font-semibold italic text-gray-700 mb-10 leading-relaxed text-center">
         Grab your EliteClub discount coupons now—save more on courts, sessions, and memberships!
       </p>
-
-
 
       {/* Carousel container */}
       <div className="relative h-[500px] md:h-[600px] lg:h-[550px] overflow-hidden flex items-center justify-center">
@@ -95,7 +107,7 @@ export default function Carousel() {
           return (
             <motion.div
               key={card.id}
-              className="absolute w-[70%] md:w-[50%] lg:w-[38%] h-[100%] mx-auto"
+              className="absolute w-[70%] md:w-[60%] lg:w-[38%] h-[100%] mx-auto"
               animate={{
                 x: `${offset * 60}%`,
                 scale: isActive ? 1 : 0.8,
@@ -105,7 +117,7 @@ export default function Carousel() {
               transition={{ type: 'spring', stiffness: 260, damping: 30 }}
             >
               <motion.div
-                className="w-full h-full rounded-2xl overflow-hidden relative shadow-2xl"
+                className="w-full h-full rounded-2xl overflow-hidden relative shadow-2xl group"
                 drag={isActive ? 'x' : false}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.3}
@@ -114,28 +126,25 @@ export default function Carousel() {
                 <img
                   src={card.imageUrl}
                   alt={`Card ${card.id}`}
-                  className="w-full h-full object-cover hover:scale-125 transition duration-500"
+                  className="w-full h-full object-cover group-hover:scale-125 transition duration-500 "
                 />
-                <div className="absolute bottom-0 bg-gradient-to-t from-black via-black/40 to-transparent text-white p-4 w-full">
 
-                  <div className="flex flex-col items-center justify-center">
-                    <span className="backdrop-blur bg-gradient-to-r from-pink-500/40 to-fuchsia-500/30 border border-pink-400 text-white  font-semibold px-4 py-10 rounded-4xl shadow-md hover:scale-105 transition-all duration-300 mb-5 text-2xl sm:text-3xl">
-                      <p className='pb-4'>🎁 Coupon: </p>
-
-                      <p className='bg-white px-4 py-2 rounded-4xl font-hoover text-black text-lg sm:text-xl lg:text-3xl'>
+                {/* Overlay and centered content */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent text-white w-full h-full ">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-4 text-center">
+                    <span className="backdrop-blur bg-gradient-to-r from-pink-500/40 to-fuchsia-500/30 border border-pink-400 text-white font-semibold px-4 md:px-8 py-10 rounded-4xl shadow-md hover:scale-105 transition-all duration-300 text-2xl sm:text-3xl">
+                      <p className="pb-4 text-left">🎁 Coupon:</p>
+                      <p className="bg-white px-4 md:px-8 py-2 rounded-4xl font-hoover text-black text-lg sm:text-3xl">
                         {card.coupon} — {card.discount} OFF
                       </p>
                     </span>
-                    <Button text="Get Offer" />
+                    <Button text="Claim Coupon" onClick={handleCouponClaim}/>
+                    {isActive && (
+                      <p className="text-sm md:text-lg absolute bottom-8 text-white font-medium max-w-md px-1.5">
+                        {card.description}
+                      </p>
+                    )}
                   </div>
-
-
-                  {/* Description */}
-                  {isActive && (
-                    <p className="text-center text-sm mt-4 text-white font-medium">
-                      {card.description}
-                    </p>
-                  )}
                 </div>
               </motion.div>
             </motion.div>
@@ -144,28 +153,37 @@ export default function Carousel() {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center items-center gap-4 mt-6">
+      <div className="flex justify-center items-center gap-6 mt-6">
         <button
           onClick={() => changeSlide(activeIndex - 1)}
-          className="p-2 rounded-full bg-[#4E6766] text-white shadow hover:bg-black hover:scale-110 cursor-pointer transition"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-700 shadow-lg hover:shadow-pink-400 hover:scale-110 transition transform cursor-pointer"
+          aria-label="Previous Slide"
         >
-          <ChevronLeftIcon />
+          <ModernChevronLeftIcon />
         </button>
+
         {cardData.map((_, i) => (
           <button
             key={i}
             onClick={() => changeSlide(i)}
-            className={`w-2 h-2 rounded-full ${i === activeIndex ? 'bg-black w-4' : 'bg-white'
-              } transition-all`}
+            className={`w-3 h-3 rounded-full ${i === activeIndex
+                ? 'bg-gradient-to-r from-pink-500 to-purple-600 w-4 h-4 shadow-lg'
+                : 'bg-white'
+              } transition-all cursor-pointer`}
+            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
+
         <button
           onClick={() => changeSlide(activeIndex + 1)}
-          className="p-2 rounded-full bg-[#4E6766] text-white shadow hover:bg-black cursor-pointer transition hover:scale-110"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-700 shadow-lg hover:shadow-pink-400 hover:scale-110 transition transform cursor-pointer"
+          aria-label="Next Slide"
         >
-          <ChevronRightIcon />
+          <ModernChevronRightIcon />
         </button>
       </div>
     </div>
   );
 }
+
+export default DiscountCoupons;

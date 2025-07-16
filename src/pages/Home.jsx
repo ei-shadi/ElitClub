@@ -1,6 +1,6 @@
 import Hero from "../components/Home/Hero";
 import AboutClub from "../components/Home/AboutClub";
-import LocationSection from "../components/Home/LocationSection";
+import LocationSection from "../components/Home/OurLocation";
 import DiscountCoupons from "../components/Home/DiscountCoupons";
 
 

@@ -6,9 +6,6 @@ import { PiSealQuestionFill } from "react-icons/pi";
 import { FaPersonRunning } from "react-icons/fa6";
 import Button from "../shared/Button";
 
-
-
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -24,9 +21,10 @@ const Navbar = () => {
         to={to}
         title={title}
         className={({ isActive }) =>
-          `flex items-center gap-2 transition-all ${isActive
-            ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
-            : "italic font-bold text-lg hover:scale-125 duration-200"
+          `flex items-center gap-2 transition-all ${
+            isActive
+              ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
+              : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
           }`
         }
         onClick={() => setIsMenuOpen(false)}
@@ -38,9 +36,7 @@ const Navbar = () => {
   ));
 
   return (
-    <div 
-    className="fixed top-0 left-0 w-full z-500  backdrop-blur transition-all duration-500">
-
+    <div className="fixed top-0 left-0 w-full z-500 backdrop-blur transition-all duration-500">
       <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link to="/">
@@ -55,7 +51,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <ul className="items-center hidden space-x-12 lg:flex">
             {centerNavLinks}
-            <div className="hidden lg:flex">
+            <div className="hidden lg:flex items-center gap-6">
               <Link to="/sign-in" title="Sign in">
                 <Button text="Sign in" />
               </Link>
@@ -90,8 +86,9 @@ const Navbar = () => {
 
         {/* Mobile Slide-in Menu */}
         <div
-          className={`fixed top-0 left-0 z-50 w-full h-screen bg-[#EFEAE6] backdrop-blur-md transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
+          className={`fixed top-0 left-0 z-50 w-full h-screen bg-[#EFEAE6] backdrop-blur-md transform transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
           <div className="p-6 flex flex-col items-center justify-center h-full">
             <div className="absolute top-6 left-6 flex items-center gap-2">
@@ -127,9 +124,12 @@ const Navbar = () => {
               <ul className="flex flex-col items-center space-y-4 w-full">
                 {centerNavLinks}
               </ul>
-              <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
-                <Button text="Sign In" className="text-lg px-6 py-2" />
-              </Link>
+
+              <div className="mt-6 flex flex-col items-center gap-4">
+                <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
+                  <Button text="Sign In" className="text-lg px-6 py-2" />
+                </Link>
+              </div>
             </nav>
           </div>
         </div>

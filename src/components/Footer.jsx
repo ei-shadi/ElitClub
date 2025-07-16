@@ -102,7 +102,7 @@ const Footer = () => {
         {/* Footer bottom section - responsive */}
         <div className="pt-6 pb-10 border-t flex flex-wrap justify-center items-center gap-2 text-center">
           <p>© Copyright 2020</p>
-          <h1 className="text-xl bg-gradient-to-br from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
+          <h1 className="text-xl bg-gradient-to-b from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent">
             EliteClub
           </h1>
           <p>All rights reserved.</p>
