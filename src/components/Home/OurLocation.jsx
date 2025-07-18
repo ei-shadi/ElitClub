@@ -21,7 +21,7 @@ const LocationSection = () => {
   const position = [23.8103, 90.4125]; // Dhaka coordinates
 
   return (
-    <div className="pb-32 px-6" id="location">
+    <div className="my-20 md:my-32 px-6" id="location">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-extrabold text-gray-600 mb-6 flex items-center justify-center gap-3">
           <TbLocationFilled className="rotate-90 text-4xl md:text-5xl" />
@@ -31,7 +31,7 @@ const LocationSection = () => {
         <p className="text-lg md:text-xl italic text-gray-600 mb-10">{address}</p>
 
         {/* Interactive Leaflet Map with TileLayer */}
-        <div className="w-full h-96 md:h-120 mb-6 overflow-hidden rounded-2xl shadow-lg -z-50">
+        <div className="w-full h-80 md:h-120 mb-6 overflow-hidden rounded-2xl shadow-lg -z-50">
           <MapContainer
             center={position}
             zoom={15}
@@ -53,7 +53,7 @@ const LocationSection = () => {
           to="https://www.google.com/maps/place/Dhaka,+Bangladesh"
           target="_blank"
           title="Google Maps"
-          className="flex justify-center mt-5"
+          className="flex justify-center mt-10"
         >
           <Button text="Go Now" />
         </Link>

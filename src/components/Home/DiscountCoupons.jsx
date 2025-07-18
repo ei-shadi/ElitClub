@@ -85,7 +85,7 @@ const DiscountCoupons = () => {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto py-10 select-none pb-32">
+    <div className="relative w-full max-w-7xl mx-auto pb-20 md:pb-32">
       <h2 className="text-4xl md:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex items-center justify-center gap-3">
         Discount <span className="text-[#FF02CB]">Coupons</span>
         <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
