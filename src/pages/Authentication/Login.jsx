@@ -147,7 +147,7 @@ const Login = () => {
           <div className="flex justify-center items-center gap-1.5 mt-4">
             <p className="text-sm text-gray-700">Don’t have an account?</p>
             <Link
-              to="/auth/sign-up"
+              to="/auth/register"
               className="text-[#FF02CB] text-sm font-medium hover:text-[#FF0000] hover:underline hover:scale-105 transition"
             >
               Register

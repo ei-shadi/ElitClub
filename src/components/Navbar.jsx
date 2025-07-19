@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/Logo.png";
 import { FaHome } from "react-icons/fa";
@@ -12,8 +12,18 @@ import toast from "react-hot-toast";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
+
+  // Track scroll to apply blur background on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
@@ -27,9 +37,10 @@ const Navbar = () => {
         to={to}
         title={title}
         className={({ isActive }) =>
-          `flex items-center gap-2 transition-all ${isActive
-            ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
-            : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
+          `flex items-center gap-2 transition-all ${
+            isActive
+              ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
+              : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
           }`
         }
         onClick={() => setIsMenuOpen(false)}
@@ -40,6 +51,7 @@ const Navbar = () => {
     </li>
   ));
 
+  // Handle logout
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -65,7 +77,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 backdrop-blur transition-all duration-500">
+    <div
+      className={`fixed top-0 left-0 w-full z-500 transition-all duration-500 ${
+        isScrolled
+          ? "backdrop-blur-md"
+          : "lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none"
+      }`}
+    >
       <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           {/* Logo */}
@@ -120,7 +138,7 @@ const Navbar = () => {
                   )}
                 </>
               ) : (
-                <Link to="/auth/sign-in" title="Sign in">
+                <Link to="/auth/login" title="Sign in">
                   <Button text="Sign in" />
                 </Link>
               )}
@@ -218,6 +236,9 @@ const Navbar = () => {
 
             <ul className="flex flex-col items-center space-y-6 w-full mt-20">
               {centerNavLinks}
+              {!user && (
+                <Button text="Sign In" onClick={() => navigate("/auth/login")} />
+              )}
             </ul>
           </div>
         </div>

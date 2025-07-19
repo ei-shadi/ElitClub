@@ -6,6 +6,8 @@ import FAQ from "../pages/FAQ";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -34,18 +36,20 @@ const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       {
-        path: "sign-in",
+        path: "login",
         Component: Login
       },
       {
-        path: "sign-up",
+        path: "register",
         Component: Register
       }
     ],
   },
   {
     path: "/dashboard",
-    element: <h1>Dashboard</h1>
+    element: <PrivateRoute>
+      <Dashboard />
+    </PrivateRoute>
   }
 ]);
 
