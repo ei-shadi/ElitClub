@@ -1,5 +1,5 @@
 {
-  "name": "elite-club",
+  "name": "eliteclub-client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.10.0",
     "daisyui": "^5.0.46",
     "firebase": "^11.10.0",
     "framer-motion": "^12.23.6",

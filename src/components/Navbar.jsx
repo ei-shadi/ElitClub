@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/Logo.png";
 import { FaHome } from "react-icons/fa";
 import { PiSealQuestionFill } from "react-icons/pi";
 import { FaPersonRunning } from "react-icons/fa6";
+import { RxCross1 } from "react-icons/rx";
+import { IoMenu } from "react-icons/io5";
 import Button from "../shared/Button";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -16,7 +18,13 @@ const Navbar = () => {
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
 
-  // Track scroll to apply blur background on scroll
+  // Separate refs for desktop and mobile avatars
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const desktopAvatarRef = useRef(null);
+  const mobileAvatarRef = useRef(null);
+  const menuBtnRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -24,6 +32,37 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+    // Close dropdown and mobile menu on click outside
+    const handleClickOutside = (event) => {
+      // Close dropdown if click outside desktop and mobile avatars & dropdown
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        desktopAvatarRef.current &&
+        !desktopAvatarRef.current.contains(event.target) &&
+        mobileAvatarRef.current &&
+        !mobileAvatarRef.current.contains(event.target)
+      ) {
+        setIsDropdownOpen(false);
+      }
+
+      // Close mobile menu if click outside mobile menu & menu button
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        menuBtnRef.current &&
+        !menuBtnRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+    useEffect(() => {
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }, []);
 
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
@@ -37,13 +76,11 @@ const Navbar = () => {
         to={to}
         title={title}
         className={({ isActive }) =>
-          `flex items-center gap-2 transition-all ${
-            isActive
-              ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
-              : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
+          `flex items-center gap-2 transition-all ${isActive
+            ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
+            : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
           }`
         }
-        onClick={() => setIsMenuOpen(false)}
       >
         <Icon size={20} />
         {title}
@@ -51,12 +88,9 @@ const Navbar = () => {
     </li>
   ));
 
-  // Handle logout
   const handleLogout = () => {
     logOutUser()
       .then(() => {
-        setIsDropdownOpen(false);
-        setIsMenuOpen(false);
         Swal.fire({
           icon: "success",
           title: "Logout successfully!",
@@ -72,17 +106,12 @@ const Navbar = () => {
       });
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-500 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-500 transition-all duration-500 ${isScrolled
           ? "backdrop-blur-md"
-          : "lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none"
-      }`}
+          : "lg:bg-transparent backdrop-blur-md bg-[#EFEAE6]/20 lg:backdrop-blur-none lg:bg-none"
+        }`}
     >
       <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
@@ -96,14 +125,15 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <ul className="items-center hidden space-x-12 lg:flex">
             {centerNavLinks}
             <div className="hidden lg:flex items-center gap-6 relative">
               {user ? (
                 <>
                   <div
-                    onClick={toggleDropdown}
+                    ref={desktopAvatarRef}
+                    onClick={() => setIsDropdownOpen((prev) => !prev)}
                     className="w-12 h-12 rounded-full border border-gray-300 hover:ring-4 hover:ring-[#FF02CB] transition duration-200 cursor-pointer overflow-hidden"
                   >
                     <img
@@ -115,21 +145,24 @@ const Navbar = () => {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-
                   {isDropdownOpen && (
-                    <div className="absolute top-16 right-0 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2 text-center">
+                    <div
+                      ref={dropdownRef}
+                      className="absolute top-14 right-2 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2 text-center"
+                    >
                       <p className="text-gray-600 text-lg font-hoover">
                         {user.displayName || user.email}
                       </p>
                       <Link
                         to="/dashboard"
-                        onClick={() => setIsDropdownOpen(false)}
                         className="block w-full text-center bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
                       >
                         Dashboard
                       </Link>
                       <button
-                        onClick={handleLogout}
+                        onClick={() => {
+                          handleLogout();
+                        }}
                         className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
                       >
                         Sign Out
@@ -138,20 +171,21 @@ const Navbar = () => {
                   )}
                 </>
               ) : (
-                <Link to="/auth/login" title="Sign in">
+                <Link to="/auth/login">
                   <Button text="Sign in" />
                 </Link>
               )}
             </div>
           </ul>
 
-          {/* Mobile Avatar & Menu */}
+          {/* Mobile Avatar + Menu Icon */}
           <div className="flex items-center gap-3 lg:hidden relative">
             {user && (
               <>
                 <div
-                  onClick={toggleDropdown}
-                  className="w-10 h-10 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#FF02CB] transition duration-200 cursor-pointer overflow-hidden"
+                  ref={mobileAvatarRef}
+                  onClick={() => setIsDropdownOpen((prev) => !prev)}
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#FF02CB] transition duration-200 cursor-pointer overflow-hidden"
                 >
                   <img
                     alt="User Avatar"
@@ -164,23 +198,24 @@ const Navbar = () => {
                 </div>
 
                 {isDropdownOpen && (
-                  <div className="absolute top-14 right-12 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2">
-                    <p className="text-gray-600 text-sm font-medium">
+                  <div
+                    ref={dropdownRef}
+                    className="absolute top-14 md:top-18 right-16 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2 text-center"
+                  >
+                    <p className="text-gray-600 text-lg font-hoover">
                       {user.displayName || user.email}
                     </p>
+                    {/* Dashboard Button */}
                     <Link
                       to="/dashboard"
-                      onClick={() => {
-                        setIsDropdownOpen(false);
-                        setIsMenuOpen(false);
-                      }}
                       className="block w-full text-center bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
                     >
                       Dashboard
                     </Link>
+                    {/* Sign Out Button */}
                     <button
                       onClick={handleLogout}
-                      className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black transition cursor-pointer"
+                      className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
                     >
                       Sign Out
                     </button>
@@ -188,56 +223,43 @@ const Navbar = () => {
                 )}
               </>
             )}
-
             <button
-              aria-label="Open Menu"
-              title="Open Menu"
-              className="p-2 transition duration-200 rounded focus:outline-none hover:bg-gray-100"
-              onClick={() => setIsMenuOpen(true)}
+              ref={menuBtnRef}
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="p-2 text-2xl text-gray-700 hover:text-[#FF02CB] transition"
             >
-              <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
-                />
-                <path
-                  fill="currentColor"
-                  d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
-                />
-                <path
-                  fill="currentColor"
-                  d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
-                />
-              </svg>
+              <IoMenu className="text-[#FF02CB]" size={30} />
             </button>
           </div>
         </div>
 
         {/* Mobile Slide Menu */}
         <div
-          className={`fixed top-0 left-0 z-40 w-full h-screen bg-[#EFEAE6] backdrop-blur-md transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed top-0 left-0 z-40 h-screen w-2/3 sm:w-1/2 bg-[#EFEAE6]/95 backdrop-blur-md shadow-xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
-          <div className="p-6 flex flex-col items-center justify-center h-full">
+          <div
+            ref={mobileMenuRef}
+            className="p-6 flex flex-col justify-center items-center h-full relative"
+          >
             <button
               aria-label="Close Menu"
               title="Close Menu"
-              className="absolute top-6 right-6 p-2 transition duration-200 rounded hover:bg-gray-200 focus:outline-none"
+              className="absolute top-4 right-4 p-2 transition duration-200 rounded hover:bg-gray-200 focus:outline-none"
               onClick={() => setIsMenuOpen(false)}
             >
-              <svg className="w-6 text-gray-600" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6 5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3-6.3,6.3c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3 6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-                />
-              </svg>
+              <RxCross1 className="w-6 h-6 text-gray-700 hover:text-black transition" />
             </button>
 
-            <ul className="flex flex-col items-center space-y-6 w-full mt-20">
+            <ul className="flex flex-col items-center justify-center flex-1 space-y-8 text-xl md:text-2xl font-semibold text-gray-800 text-center">
               {centerNavLinks}
               {!user && (
-                <Button text="Sign In" onClick={() => navigate("/auth/login")} />
+                <Button
+                  text="Sign In"
+                  onClick={() => {
+                    navigate("/auth/login");
+                  }}
+                />
               )}
             </ul>
           </div>

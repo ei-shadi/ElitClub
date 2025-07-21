@@ -23,7 +23,7 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 10px 40px;
+    padding: 8px 40px;
     font-size: 24px;
     background-color: red;
     border-radius: 10px;
@@ -57,7 +57,7 @@ const StyledWrapper = styled.div`
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: #4e6766;
+    background-color: black;
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);

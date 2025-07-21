@@ -8,6 +8,8 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import axios from "axios";
+import Loader from "../shared/Loader";
 
 
 
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         index: true,
@@ -23,7 +26,9 @@ const router = createBrowserRouter([
       },
       {
         path: "courts",
-        Component: Courts
+        Component: Courts,
+        hydrateFallbackElement: <Loader />,
+        loader: () => axios.get(`${import.meta.env.VITE_API_URL}/courts-data`)
       },
       {
         path: "faq",
@@ -34,6 +39,7 @@ const router = createBrowserRouter([
   {
     path: "auth",
     element: <AuthLayout />,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         path: "login",
