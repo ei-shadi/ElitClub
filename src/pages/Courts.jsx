@@ -1,12 +1,28 @@
 import { TbLocationFilled } from "react-icons/tb";
-import { Link, useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Button from "../shared/Button";
 import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+import CourtBookingModal from "../components/CourtBookingModal";
 
 
 const Courts = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const { data: courtsData } = useLoaderData();
+  const navigate = useNavigate();
+  const [selectedCourt, setSelectedCourt] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+  // Handle Booking Button
+  const handleBooking = (court) => {
+    if (user) {
+      setSelectedCourt(court);
+      setModalOpen(true);
+    } else {
+      navigate("/auth/login");
+    }
+  };
 
   return (
     <div className="min-h-screen py-20 md:py-32 px-6 max-w-7xl mx-auto">
@@ -15,6 +31,7 @@ const Courts = () => {
         <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
       </h2>
 
+      {/* Courts Card Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {courtsData?.map((court) => (
           <div
@@ -39,7 +56,7 @@ const Courts = () => {
               <img
                 src={court.image}
                 alt={court.courtType}
-                className="h-full w-full object-cover rounded-xl transition-all duration-500 group-hover:opacity-0"
+                className="h-full w-full object-cover rounded-xl transition-all duration-500 group-hover:opacity"
               />
             </div>
 
@@ -63,17 +80,30 @@ const Courts = () => {
               </div>
 
               <p className="text-2xl md:text-3xl bg-[#EFEAE6] px-8 py-2 rounded-full text-[#FF02CB] font-hoover">
-                ৳ {court.price}
+                $ {court.price}
               </p>
 
             </div>
-              {/* Button */}
-              <div className="mt-4 flex justify-center relative z-30">
-                <Button text="Book Now" />
-              </div>
+            {/* Button */}
+            <div className="mt-4 flex justify-center relative z-30">
+              <Button text="Book Now"
+                onClick={() => handleBooking(court)} />
+            </div>
           </div>
         ))}
       </div>
+
+
+      {/* MODAL HERE */}
+      {
+        modalOpen && (
+          <CourtBookingModal 
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)} 
+          court={selectedCourt} 
+          user={user}/>
+        )
+      }
     </div>
   );
 };

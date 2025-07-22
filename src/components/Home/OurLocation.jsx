@@ -28,7 +28,7 @@ const LocationSection = () => {
           <span className="text-[#FF02CB]">Our</span> Location
         </h2>
 
-        <p className="text-lg md:text-xl italic text-gray-600 mb-10">{address}</p>
+        <p className="text-lg md:text-xl italic text-gray-600 font-semibold mb-10">{address}</p>
 
         {/* Interactive Leaflet Map with TileLayer */}
         <div className="w-full h-80 md:h-120 mb-6 overflow-hidden rounded-2xl shadow-lg -z-50">
