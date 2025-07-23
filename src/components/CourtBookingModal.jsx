@@ -97,7 +97,7 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
               ✕
             </button>
 
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-700 mb-6 text-center flex items-center justify-center gap-3">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-700 mb-6 text-center flex items-center justify-center gap-3 flex-wrap">
               Book <span className="text-[#FF02CB]">{court.courtType}</span> Court
               <TbLocationFilled className="rotate-180 text-5xl md:text-6xl" />
             </h2>

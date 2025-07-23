@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const Loader = () => {
+const PageLoader = () => {
   return (
     <StyledWrapper>
       <div>
@@ -26,15 +25,14 @@ const StyledWrapper = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
+  background-color: #EFEAE6;
   z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(6px);
-  background-color: rgba(255, 255, 255, 0.6);
 
   .loader {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    margin-left: -50px;
+    left: 50%;
     animation: speeder 0.4s linear infinite;
   }
   .loader > span {
@@ -121,77 +119,37 @@ const StyledWrapper = styled.div`
     animation: fazer4 1s linear infinite;
     animation-delay: -1s;
   }
+
   @keyframes fazer1 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -80px;
-      opacity: 0;
-    }
+    0% { left: 0; }
+    100% { left: -80px; opacity: 0; }
   }
   @keyframes fazer2 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -100px;
-      opacity: 0;
-    }
+    0% { left: 0; }
+    100% { left: -100px; opacity: 0; }
   }
   @keyframes fazer3 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -50px;
-      opacity: 0;
-    }
+    0% { left: 0; }
+    100% { left: -50px; opacity: 0; }
   }
   @keyframes fazer4 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -150px;
-      opacity: 0;
-    }
+    0% { left: 0; }
+    100% { left: -150px; opacity: 0; }
   }
   @keyframes speeder {
-    0% {
-      transform: translate(2px, 1px) rotate(0deg);
-    }
-    10% {
-      transform: translate(-1px, -3px) rotate(-1deg);
-    }
-    20% {
-      transform: translate(-2px, 0px) rotate(1deg);
-    }
-    30% {
-      transform: translate(1px, 2px) rotate(0deg);
-    }
-    40% {
-      transform: translate(1px, -1px) rotate(1deg);
-    }
-    50% {
-      transform: translate(-1px, 3px) rotate(-1deg);
-    }
-    60% {
-      transform: translate(-1px, 1px) rotate(0deg);
-    }
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg);
-    }
-    80% {
-      transform: translate(-2px, -1px) rotate(1deg);
-    }
-    90% {
-      transform: translate(2px, 1px) rotate(0deg);
-    }
-    100% {
-      transform: translate(1px, -2px) rotate(-1deg);
-    }
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -3px) rotate(-1deg); }
+    20% { transform: translate(-2px, 0px) rotate(1deg); }
+    30% { transform: translate(1px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 3px) rotate(-1deg); }
+    60% { transform: translate(-1px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-2px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 1px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
   .longfazers {
     position: absolute;
     width: 100%;
@@ -222,42 +180,23 @@ const StyledWrapper = styled.div`
     animation: lf4 0.5s linear infinite;
     animation-delay: -3s;
   }
+
   @keyframes lf {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -200%;
-      opacity: 0;
-    }
+    0% { left: 200%; }
+    100% { left: -200%; opacity: 0; }
   }
   @keyframes lf2 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -200%;
-      opacity: 0;
-    }
+    0% { left: 200%; }
+    100% { left: -200%; opacity: 0; }
   }
   @keyframes lf3 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -100%;
-      opacity: 0;
-    }
+    0% { left: 200%; }
+    100% { left: -100%; opacity: 0; }
   }
   @keyframes lf4 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -100%;
-      opacity: 0;
-    }
+    0% { left: 200%; }
+    100% { left: -100%; opacity: 0; }
   }
 `;
 
-export default Loader;
+export default PageLoader;
