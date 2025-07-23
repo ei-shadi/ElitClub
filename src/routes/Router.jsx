@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    hydrateFallbackElement: <PageLoader />,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         index: true,
@@ -26,6 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "courts",
+        hydrateFallbackElement: <Loader />,
         Component: Courts,
       },
       {
