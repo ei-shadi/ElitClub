@@ -9,7 +9,7 @@ import Register from "../pages/Authentication/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "../provider/PrivateRoute";
 import Loader from "../shared/Loader";
-import PageLoader from "../shared/PageLoader";
+import ErrorPage from "../pages/Error";
 
 
 
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     hydrateFallbackElement: <Loader />,
     children: [
       {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
   {
     path: "auth",
     element: <AuthLayout />,
+    errorElement: <ErrorPage />,
     hydrateFallbackElement: <Loader />,
     children: [
       {
@@ -52,6 +54,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <ErrorPage />,
+    hydrateFallbackElement: <Loader />,
     element: <PrivateRoute>
       <Dashboard />
     </PrivateRoute>
