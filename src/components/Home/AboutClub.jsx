@@ -2,7 +2,7 @@ import { TbLocationFilled } from "react-icons/tb";
 
 const AboutClub = () => {
   return (
-    <section className="my-20 md:my-32 px-6">
+    <section className="my-20 md:my-32 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <h2 className="text-4xl md:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex items-center justify-center gap-3">

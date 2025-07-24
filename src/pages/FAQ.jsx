@@ -79,7 +79,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-4 pt-36 lg:pt-60 pb-32">
+    <section className="max-w-6xl mx-auto px-4 pt-36 lg:pt-40 pb-32">
       {/* How To Use Section */}
       <div className="mb-32">
         <h2 className="text-3xl md:text-6xl font-extrabold text-gray-600 mb-14 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-2 md:gap-3">

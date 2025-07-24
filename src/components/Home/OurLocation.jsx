@@ -21,7 +21,7 @@ const LocationSection = () => {
   const position = [23.8103, 90.4125]; // Dhaka coordinates
 
   return (
-    <div className="my-20 md:my-32 px-6" id="location">
+    <div className="my-20 md:my-32 px-4" id="location">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-extrabold text-gray-600 mb-6 flex items-center justify-center gap-3">
           <TbLocationFilled className="rotate-90 text-4xl md:text-5xl" />

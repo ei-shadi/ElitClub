@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Button from '../shared/Button';
+import Button from '../../shared/Button.jsx';
 import { TbLocationFilled } from 'react-icons/tb';
-import showSwal from '../shared/showSwal.js';
+import showSwal from '../../shared/showSwal.js';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -151,9 +151,9 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
             </div>
 
             <p className="font-extrabold text-2xl text-center bg-[#FF02CB] px-8 md:px-16 py-3 rounded-full shadow-lg w-fit mx-auto transition-transform duration-300 hover:scale-105 text-gray-800">
-              Total Price : 
+              Total Price :
               <span className="ml-2 text-white">
-              $ {totalPrice}</span>
+                $ {totalPrice}</span>
             </p>
 
             <div className="flex flex-col-reverse md:flex-row justify-center gap-6 mt-8">

@@ -8,7 +8,7 @@ const Hero = () => {
       className="bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bgImg})` }}
     >
-      <div className=" h-screen flex items-center justify-center px-4 overflow-hidden">
+      <div className=" h-screen flex items-center justify-center px-4 overflow-hidden ">
         {/* Central Content */}
         <div className="relative text-center mx-auto backdrop-blur bg-gradient-to-r from-[#EFEAE6]/60 to-[#EFEAE6]/60 rounded-3xl py-10 max-w-6xl px-6">
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-wide bg-gradient-to-b from-[#1e152a] to-[#FF02CB] bg-clip-text text-transparent mb-6 drop-shadow-md">

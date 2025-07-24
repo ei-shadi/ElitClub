@@ -6,10 +6,13 @@ import FAQ from "../pages/FAQ";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "../provider/PrivateRoute";
 import Loader from "../shared/Loader";
 import ErrorPage from "../pages/Error";
+import Profile from "../components/Dashboard/Profile";
+import Announcement from "../components/Dashboard/Announcements";
+import PendingBookings from "../components/Dashboard/PendingBookings";
 
 
 
@@ -58,7 +61,21 @@ const router = createBrowserRouter([
     hydrateFallbackElement: <Loader />,
     element: <PrivateRoute>
       <Dashboard />
-    </PrivateRoute>
+    </PrivateRoute>,
+    children: [
+      {
+        path: "profile",
+        Component: Profile
+      },
+      {
+        path: "pending-bookings",
+        Component: PendingBookings
+      },
+      {
+        path: "announcements",
+        Component: Announcement
+      }
+    ]
   }
 ]);
 
