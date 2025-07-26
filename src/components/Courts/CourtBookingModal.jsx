@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import Button from '../../shared/Button.jsx';
 import { TbLocationFilled } from 'react-icons/tb';
 import showSwal from '../../shared/showSwal.js';
-import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure.jsx';
+import { useMutation } from '@tanstack/react-query';
 
 const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
   const [selectedSlots, setSelectedSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (!isOpen) {
@@ -14,6 +16,40 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
       setSelectedDate('');
     }
   }, [isOpen]);
+
+  const bookingMutation = useMutation({
+    mutationFn: (bookingData) =>
+      axiosSecure.post('/bookings', bookingData),
+
+    onSuccess: (res) => {
+      if (res.data.insertedId) {
+        showSwal({
+          icon: 'success',
+          title: `<div class="text-4xl font-bold text-[#10B981]">Booking Confirmed!</div>`,
+          html: `
+            <p class="text-gray-600 mt-2 text-xl">Thanks, 
+            <span class="text-[#FF02CB] font-semibold text-2xl font-hoover">${user.displayName || user.email}</span>
+            </p>`,
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+        });
+        onRequestClose?.();
+      }
+    },
+
+    onError: (error) => {
+      console.error(error);
+      showSwal({
+        icon: 'error',
+        title: 'Booking Failed!',
+        html: `<p class="text-gray-600 mt-2 text-xl">Sorry, <span class="text-[#FF02CB] font-semibold text-2xl font-hoover">${user.displayName || user.email}</span></p>
+          <p class="text-red-500 text-lg">Please try again later or Contact Our Support Team.</p>`,
+        showConfirmButton: true,
+        confirmButtonText: 'Try Again',
+      });
+    },
+  });
 
   if (!court || !user) return null;
 
@@ -25,7 +61,6 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
   };
 
   const handleSubmit = () => {
-    // Validation for selected date and slots
     if (!selectedDate || selectedSlots.length === 0) {
       showSwal({
         icon: 'error',
@@ -35,7 +70,6 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
       return;
     }
 
-    // Booking Data
     const bookingData = {
       user: user.email,
       courtId: court.id,
@@ -47,47 +81,17 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
       createdAt: new Date().toISOString(),
     };
 
-    // Booking Data Send To Database
-    axios.post(`${import.meta.env.VITE_API_URL}/booking-courts`, bookingData)
-      .then(data => {
-        if (data.data.insertedId) {
-          showSwal({
-            icon: 'success',
-            title: `<div class="text-4xl font-bold text-[#10B981]">Booking Confirmed!</div>`,
-            html: `
-            <p class="text-gray-600 mt-2 text-xl">Thanks, 
-            <span class="text-[#FF02CB] font-semibold text-2xl font-hoover">${user.displayName || user.email}</span>
-            </p>`,
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        showSwal({
-          icon: 'error',
-          title: 'Booking Failed!',
-          html: `<p class="text-gray-600 mt-2 text-xl">Sorry, <span class="text-[#FF02CB] font-semibold text-2xl font-hoover">${user.displayName || user.email}</span></p>
-          <p class="text-red-500 text-lg">Please try again later or Contact Our Support Team.</p>`,
-          showConfirmButton: true,
-          confirmButtonText: 'Try Again',
-        })
-      })
-
-    onRequestClose();
+    bookingMutation.mutate(bookingData);
   };
 
   const totalPrice = court.price * selectedSlots.length;
-
 
   return (
     <>
       {isOpen && (
         <div className="modal modal-open">
           <div className="modal-box max-w-xl rounded-3xl bg-[#EFEAE6] shadow-2xl p-10 relative">
-            {/* Close button top-right */}
+            {/* Close button */}
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4"
               onClick={onRequestClose}
@@ -150,9 +154,7 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
             </div>
 
             <p className="font-extrabold text-2xl text-center bg-[#FF02CB] px-8 md:px-16 py-3 rounded-full shadow-lg w-fit mx-auto transition-transform duration-300 hover:scale-105 text-gray-800">
-              Total Price :
-              <span className="ml-2 text-white">
-                $ {totalPrice}</span>
+              Total Price : <span className="ml-2 text-white">$ {totalPrice}</span>
             </p>
 
             <div className="flex flex-col-reverse md:flex-row justify-center gap-6 mt-8">
@@ -163,8 +165,9 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
                 className="md:flex-1 text-center"
               />
               <Button
-                text="Confirm Booking"
+                text={bookingMutation.isPending ? "Booking..." : "Confirm Booking"}
                 onClick={handleSubmit}
+                disabled={bookingMutation.isPending}
                 className="md:flex-1"
               />
             </div>

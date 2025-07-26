@@ -3,8 +3,6 @@ import { useNavigate } from "react-router";
 import { TbLocationFilled } from "react-icons/tb";
 import { FaThLarge, FaTable } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
-
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 
 import Loader from "../shared/Loader";
@@ -12,11 +10,12 @@ import Pagination from "../components/Pagination";
 import CourtBookingModal from "../components/Courts/CourtBookingModal";
 import CourtCardView from "../components/Courts/CourtCardView";
 import CourtTableView from "../components/Courts/CourtTableView";
+import useAxios from "../hooks/useAxios";
 
 const Courts = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,7 +28,7 @@ const Courts = () => {
   const { data: courtsData = [], isPending, isError, error } = useQuery({
     queryKey: ["courts-data"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/courts");
+      const res = await axiosInstance.get("/courts");
       return res.data;
     },
   });
