@@ -6,13 +6,14 @@ import FAQ from "../pages/FAQ";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../layout/DashboardLayout";
 import PrivateRoute from "../provider/PrivateRoute";
 import Loader from "../shared/Loader";
 import ErrorPage from "../pages/Error";
-import Profile from "../components/Dashboard/Profile";
-import Announcement from "../components/Dashboard/Announcements";
-import PendingBookings from "../components/Dashboard/PendingBookings";
+import Profile from "../pages/Dashboard/Profile";
+import Announcement from "../pages/Dashboard/Announcements";
+import PendingBookings from "../pages/Dashboard/PendingBookings";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
 
 
 
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       <Dashboard />
     </PrivateRoute>,
     children: [
+      {
+        index: true,
+        Component: DashboardHome
+      },
       {
         path: "profile",
         Component: Profile

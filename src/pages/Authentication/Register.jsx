@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import useAxios from '../../hooks/useAxios';
+
 
 const Register = () => {
   const { createUser, setUser } = useAuth();
@@ -16,12 +18,23 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const password = watch('password');
+  const axiosInstance = useAxios();
 
   const onSubmit = data => {
     const { name, email, password } = data;
 
+    const userInfo = {
+      name: name,
+      email: email,
+      role: 'user',
+      img_url: '',
+      created_at: new Date().toISOString(),
+      last_login: new Date().toISOString()
+    }
+
+    // Register User
     createUser(email, password, name)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         setUser(user);
         Swal.fire({
@@ -34,6 +47,7 @@ const Register = () => {
           timerProgressBar: true,
         });
         navigate('/');
+        await axiosInstance.post("/users", userInfo);
       })
       .catch(error => {
         toast.error(error.message);

@@ -10,6 +10,10 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../firebase/firebase.config';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import useAxios from '../../hooks/useAxios';
+
+
+
 
 const Login = () => {
   const { logInUser, setUser } = useAuth();
@@ -18,11 +22,15 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const axiosInstance = useAxios();
+
 
   const onSubmit = data => {
     const { email, password } = data;
+
+    // Login User
     logInUser(email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         setUser(user);
         Swal.fire({
@@ -41,10 +49,19 @@ const Login = () => {
       });
   };
 
+  // Google Login
   const handleGoogleLogin = () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          role: 'user',
+          photoURL: user.photoURL,
+          created_at: new Date().toISOString(),
+          last_login: new Date().toISOString()
+        }
         setUser(user);
         Swal.fire({
           icon: 'success',
@@ -56,6 +73,7 @@ const Login = () => {
           timerProgressBar: true,
         });
         navigate(location.state ? location.state : '/');
+        await axiosInstance.post('/users', userInfo);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -73,7 +91,7 @@ const Login = () => {
           damping: 10,
           duration: 0.6,
         }}
-        
+
         className="w-[90%] md:w-[70%] max-w-md"
       >
         <div className="bg-white text-black rounded-2xl shadow-xl p-10">

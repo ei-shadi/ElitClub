@@ -64,12 +64,14 @@ const Navbar = () => {
       };
     }, []);
 
+  // Nav Links Array
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
     { to: "/courts", title: "Courts", icon: FaPersonRunning },
     { to: "/faq", title: "FAQ", icon: PiSealQuestionFill },
   ];
 
+  // Center nav links
   const centerNavLinks = navLinks.map(({ to, title, icon: Icon }) => (
     <li key={to}>
       <NavLink
@@ -88,6 +90,7 @@ const Navbar = () => {
     </li>
   ));
 
+  // Handle logout
   const handleLogout = () => {
     logOutUser()
       .then(() => {

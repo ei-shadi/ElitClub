@@ -3,7 +3,6 @@ import Button from '../../shared/Button.jsx';
 import { TbLocationFilled } from 'react-icons/tb';
 import showSwal from '../../shared/showSwal.js';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
   const [selectedSlots, setSelectedSlots] = useState([]);

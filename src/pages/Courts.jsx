@@ -29,7 +29,7 @@ const Courts = () => {
   const { data: courtsData = [], isPending, isError, error } = useQuery({
     queryKey: ["courts-data"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/courts-data");
+      const res = await axiosSecure.get("/courts");
       return res.data;
     },
   });

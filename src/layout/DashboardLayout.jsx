@@ -37,8 +37,8 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#EFEAE6]">
       {/* Mobile Top-bar */}
-      <header className="flex items-center justify-between md:hidden p-4 transition-all duration-300 fixed top-0 left-0 w-full z-30 bg-transparent backdrop-blur-md shadow">
-        <Link to="/">
+      <header className="flex items-center justify-between md:hidden p-4 fixed top-0 left-0 w-full z-40 bg-transparent backdrop-blur-md shadow">
+        <Link to="/dashboard">
           <div className="flex items-center gap-2">
             <img className="w-14" src={Logo} alt="Logo" />
             <h1 className="text-3xl bg-gradient-to-b from-black to-[#FF02CB] bg-clip-text text-transparent">
@@ -48,7 +48,7 @@ const Dashboard = () => {
         </Link>
         <button
           onClick={() => setSidebarOpen((prev) => !prev)}
-          className="text-gray-700 text-2xl z-40"
+          className="text-gray-700 text-2xl z-50"
           aria-label="Toggle sidebar"
         >
           {sidebarOpen ? <FaTimes /> : <FaBars />}
@@ -58,9 +58,14 @@ const Dashboard = () => {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`md:bg-white fixed md:static z-20 top-[72px] md:top-0 left-0 h-screen w-68 lg:w-80 transform transition-transform duration-300 ease-in-out 
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-          md:translate-x-0 bg-transparent backdrop-blur-md shadow-md p-6 space-y-6`}
+        className={`bg-white backdrop-blur-md shadow-md p-6 space-y-6
+        fixed z-30
+        w-[270px] lg:w-80
+        transition-all duration-300 ease-in-out
+        h-[calc(100vh-72px)] top-[72px] 
+        md:h-screen md:top-0             
+        ${sidebarOpen ? "left-0 translate-x-0 bg-white/60 backdrop-blur-md" : "-translate-x-full"}
+        md:translate-x-0 md:left-0`}
       >
         {/* Desktop Logo */}
         <Link
@@ -73,7 +78,7 @@ const Dashboard = () => {
           </h1>
         </Link>
 
-        {/* Navigation */}
+        {/* Sidebar Navigation */}
         <nav className="flex flex-col gap-3 my-4">
           <NavLink
             to="/dashboard/profile"
@@ -118,17 +123,22 @@ const Dashboard = () => {
           </NavLink>
         </nav>
 
+        {/* Return Home Button */}
         <Link
           to="/"
           onClick={handleMobileNavClick}
-          className="absolute bottom-24 md:bottom-5 left-4 text-sm text-gray-400 hover:text-[#FF02CB]"
+          className="absolute bottom-5 left-4 text-sm text-gray-400 hover:text-[#FF02CB]"
         >
           <Button text="Return Home" />
         </Link>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-4 md:p-8 mt-[72px] md:mt-0 md:ml-5">
+      <main
+        className={`flex-1 p-4 md:p-8
+        mt-[72px] md:mt-5
+        md:ml-[270px] lg:ml-80`}
+      >
         <Outlet />
       </main>
     </div>
