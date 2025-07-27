@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 import Logo from "../assets/Logo.png";
 import { FaHome } from "react-icons/fa";
 import { PiSealQuestionFill } from "react-icons/pi";
@@ -10,6 +11,9 @@ import Button from "../shared/Button";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import useUserData from "../hooks/useUserData";
+import Loader from "../shared/Loader";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,8 +21,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
-  // Separate refs for desktop and mobile avatars
+  // Refs
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const desktopAvatarRef = useRef(null);
@@ -33,9 +38,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-    // Close dropdown and mobile menu on click outside
+  useEffect(() => {
     const handleClickOutside = (event) => {
-      // Close dropdown if click outside desktop and mobile avatars & dropdown
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
@@ -46,8 +50,6 @@ const Navbar = () => {
       ) {
         setIsDropdownOpen(false);
       }
-
-      // Close mobile menu if click outside mobile menu & menu button
       if (
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target) &&
@@ -57,28 +59,31 @@ const Navbar = () => {
         setIsMenuOpen(false);
       }
     };
-    useEffect(() => {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    }, []);
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-  // Nav Links Array
+  // Fetch MongoDB user by email
+  const { data: userDB, isLoading, isError } = useUserData();
+
+  if (isLoading) return <Loader />;
+  if (isError) return "Error!";
+
   const navLinks = [
     { to: "/", title: "Home", icon: FaHome },
     { to: "/courts", title: "Courts", icon: FaPersonRunning },
     { to: "/faq", title: "FAQ", icon: PiSealQuestionFill },
   ];
 
-  // Center nav links
   const centerNavLinks = navLinks.map(({ to, title, icon: Icon }) => (
     <li key={to}>
       <NavLink
         to={to}
         title={title}
         className={({ isActive }) =>
-          `flex items-center gap-2 transition-all ${isActive
+          `flex items-center justify-center gap-2 transition-all ${isActive
             ? "text-lg font-extrabold text-white bg-[#FF02CB] rounded-4xl px-6 py-1.5"
             : "italic font-bold text-lg hover:scale-125 duration-200 nav-text"
           }`
@@ -90,7 +95,7 @@ const Navbar = () => {
     </li>
   ));
 
-  // Handle logout
+// Handle Logout
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -100,25 +105,26 @@ const Navbar = () => {
           showConfirmButton: true,
           confirmButtonText: "Continue",
           timer: 2000,
-          timerProgressBar: true,
         });
         navigate("/");
       })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+      .catch((error) => toast.error(error.message));
   };
+
+  const displayPhoto =
+    userDB?.photoURL ||
+    user?.photoURL ||
+    "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp";
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-500 transition-all duration-500 ${isScrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
           ? "backdrop-blur-md"
-          : "lg:bg-transparent backdrop-blur-md bg-[#EFEAE6]/20 lg:backdrop-blur-none lg:bg-none"
+          : "lg:bg-transparent backdrop-blur-md bg-[#EFEAE6]/20 lg:backdrop-blur-none"
         }`}
     >
       <div className="px-6 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
-          {/* Logo */}
           <Link to="/">
             <div className="flex items-center gap-2">
               <img className="w-14 md:w-20" src={Logo} alt="Logo" />
@@ -128,7 +134,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav + Avatar */}
           <ul className="items-center hidden space-x-12 lg:flex">
             {centerNavLinks}
             <div className="hidden lg:flex items-center gap-6 relative">
@@ -137,36 +143,31 @@ const Navbar = () => {
                   <div
                     ref={desktopAvatarRef}
                     onClick={() => setIsDropdownOpen((prev) => !prev)}
-                    className="w-12 h-12 rounded-full border border-gray-300 hover:ring-4 hover:ring-[#FF02CB] transition duration-200 cursor-pointer overflow-hidden"
+                    className="w-12 h-12 rounded-full border border-gray-300 hover:ring-4 hover:ring-[#FF02CB] cursor-pointer overflow-hidden"
                   >
                     <img
-                      alt="User Avatar"
-                      src={
-                        user?.photoURL ||
-                        "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-                      }
+                      src={displayPhoto}
+                      alt="User"
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                   {isDropdownOpen && (
                     <div
                       ref={dropdownRef}
-                      className="absolute top-14 right-2 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2 text-center"
+                      className="absolute top-14 right-2 bg-white rounded-xl shadow-xl p-4 min-w-[250px] z-50 space-y-2 text-center"
                     >
-                      <p className="text-gray-600 text-lg font-hoover">
-                        {user.displayName || user.email}
+                      <p className="text-gray-600 text-xl font-hoover italic bg-amber-300 py-2 px-2 rounded-xl">
+                        {userDB?.name || user.displayName || user.email}
                       </p>
                       <Link
                         to="/dashboard"
-                        className="block w-full text-center bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
+                        className="block bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black transition"
                       >
                         Dashboard
                       </Link>
                       <button
-                        onClick={() => {
-                          handleLogout();
-                        }}
-                        className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
+                        onClick={handleLogout}
+                        className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black transition"
                       >
                         Sign Out
                       </button>
@@ -181,21 +182,18 @@ const Navbar = () => {
             </div>
           </ul>
 
-          {/* Mobile Avatar + Menu Icon */}
+          {/* Mobile Avatar + Menu */}
           <div className="flex items-center gap-3 lg:hidden relative">
             {user && (
               <>
                 <div
                   ref={mobileAvatarRef}
                   onClick={() => setIsDropdownOpen((prev) => !prev)}
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#FF02CB] transition duration-200 cursor-pointer overflow-hidden"
+                  className="w-12 h-12 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#FF02CB] cursor-pointer overflow-hidden"
                 >
                   <img
-                    alt="User Avatar"
-                    src={
-                      user?.photoURL ||
-                      "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-                    }
+                    src={displayPhoto}
+                    alt="User"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -203,22 +201,20 @@ const Navbar = () => {
                 {isDropdownOpen && (
                   <div
                     ref={dropdownRef}
-                    className="absolute top-14 md:top-18 right-16 bg-white rounded-xl shadow-xl p-4 min-w-[200px] z-50 space-y-2 text-center"
+                    className="absolute top-14 right-16 bg-white rounded-xl shadow-xl p-4 min-w-[250px] z-50 space-y-2 text-center"
                   >
-                    <p className="text-gray-600 text-lg font-hoover">
-                      {user.displayName || user.email}
+                    <p className="text-gray-600 text-xl font-hoover italic bg-amber-300 py-2 px-2 rounded-xl">
+                      {userDB?.name || user.displayName || user.email}
                     </p>
-                    {/* Dashboard Button */}
                     <Link
                       to="/dashboard"
-                      className="block w-full text-center bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
+                      className="block bg-[#FF02CB] text-white font-semibold py-2 rounded-lg hover:bg-black transition"
                     >
                       Dashboard
                     </Link>
-                    {/* Sign Out Button */}
                     <button
                       onClick={handleLogout}
-                      className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black cursor-pointer transition"
+                      className="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-black transition"
                     >
                       Sign Out
                     </button>
@@ -229,16 +225,16 @@ const Navbar = () => {
             <button
               ref={menuBtnRef}
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="p-2 text-2xl text-gray-700 hover:text-[#FF02CB] transition"
+              className="p-2 text-2xl hover:text-[#FF02CB]"
             >
-              <IoMenu className="text-[#FF02CB]" size={30} />
+              <IoMenu size={30} className="text-[#FF02CB]" />
             </button>
           </div>
         </div>
 
-        {/* Mobile Slide Menu */}
+        {/* Mobile Menu */}
         <div
-          className={`fixed top-0 left-0 z-40 h-screen w-2/3 sm:w-1/2 bg-[#EFEAE6]/95 backdrop-blur-md shadow-xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          className={`fixed top-0 left-0 z-40 h-screen w-2/3 sm:w-1/2 bg-[#EFEAE6]/95 backdrop-blur-md shadow-xl transform transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
             }`}
         >
           <div
@@ -246,15 +242,12 @@ const Navbar = () => {
             className="p-6 flex flex-col justify-center items-center h-full relative"
           >
             <button
-              aria-label="Close Menu"
-              title="Close Menu"
-              className="absolute top-4 right-4 p-2 transition duration-200 rounded hover:bg-gray-200 focus:outline-none"
               onClick={() => setIsMenuOpen(false)}
+              className="absolute top-4 right-4"
             >
-              <RxCross1 className="w-6 h-6 text-gray-700 hover:text-black transition" />
+              <RxCross1 className="w-6 h-6 text-gray-700 hover:text-black" />
             </button>
-
-            <ul className="flex flex-col items-center justify-center flex-1 space-y-8 text-xl md:text-2xl font-semibold text-gray-800 text-center">
+            <ul className="flex flex-col items-center justify-center flex-1 space-y-8 text-xl font-semibold text-gray-800 text-center">
               {centerNavLinks}
               {!user && (
                 <Button

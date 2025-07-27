@@ -18,6 +18,7 @@ import ApprovedBookings from "../pages/Dashboard/Member Dashboard/ApprovedBookin
 import ConfirmedBookings from "../pages/Dashboard/Member Dashboard/ConfirmedBookings";
 import Payments from "../pages/Dashboard/Member Dashboard/Payments";
 import PaymentsHistory from "../pages/Dashboard/Member Dashboard/PaymentsHistory";
+import ManageApproval from "../pages/Dashboard/Admin Dashboard/ManageApproval";
 
 
 
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: "payments-history",
         Component: PaymentsHistory
+      },
+      {
+        path: "manage-approval",
+        Component: ManageApproval
       },
       {
         path: "announcements",

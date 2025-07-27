@@ -64,7 +64,7 @@ const PendingBookings = () => {
         </h2>
 
         {bookings.length === 0 ? (
-          <p className="text-center text-gray-500">No pending bookings found.</p>
+          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Pending Bookings Found.</p>
         ) : (
           <div className="grid gap-6">
             {bookings.map((booking) => (
