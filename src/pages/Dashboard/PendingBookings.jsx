@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { MdSportsTennis } from 'react-icons/md';
 import Loader from '../../shared/Loader';
 import { TbLocationFilled } from 'react-icons/tb';
+import showSwal from '../../shared/showSwal';
 
 const PendingBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -47,6 +48,7 @@ const PendingBookings = () => {
   const handleDeleteConfirm = () => {
     if (deleteId) {
       deleteMutation.mutate(deleteId);
+      showSwal({ icon: 'success', title: 'Booking Cancelled!' });
     }
   };
 
@@ -56,7 +58,7 @@ const PendingBookings = () => {
   return (
     <>
       <div className="max-w-5xl mx-auto p-6">
-        <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex items-center justify-center gap-3">
+        <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
           <span className="text-[#FF02CB]">⏳ Pending</span> Bookings
           <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
         </h2>

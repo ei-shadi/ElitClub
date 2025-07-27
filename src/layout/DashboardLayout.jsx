@@ -137,7 +137,7 @@ const Dashboard = () => {
       <main
         className={`flex-1 p-4 md:p-8
         mt-[72px] md:mt-5
-        md:ml-[270px] lg:ml-80`}
+        md:ml-[250px] lg:ml-80`}
       >
         <Outlet />
       </main>
