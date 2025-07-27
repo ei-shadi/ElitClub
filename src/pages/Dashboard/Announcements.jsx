@@ -18,8 +18,8 @@ const Announcements = () => {
     <div className="max-w-5xl mx-auto px-4 md:px-8 py-12">
       {/* Title with icon and responsive wrap */}
       <h2 className="text-4xl lg:text-6xl font-extrabold text-gray-700 mb-12 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
-        <GrAnnounce className="text-4xl md:text-5xl text-amber-500" />
-        Latest <span className="text-[#FF02CB]">Announcements</span>
+        <GrAnnounce className="text-4xl md:text-5xl text-orange-400" />
+        <span className="text-[#FF02CB]">Announcements</span>
         <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
       </h2>
 

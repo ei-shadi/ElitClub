@@ -3,9 +3,12 @@ import {
   FaUserCircle,
   FaBullhorn,
   FaBars,
-  FaClock,
   FaTimes,
+  FaCheckCircle,
 } from "react-icons/fa";
+import { MdPendingActions } from "react-icons/md";
+import { BsBookmarkCheckFill } from "react-icons/bs";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { useState, useEffect, useRef } from "react";
 import Button from "../shared/Button";
 import Logo from "../assets/Logo.png";
@@ -60,7 +63,7 @@ const Dashboard = () => {
         ref={sidebarRef}
         className={`bg-white backdrop-blur-md shadow-md p-6 space-y-6
         fixed z-30
-        w-[270px] lg:w-80
+        w-[290px] lg:w-80
         transition-all duration-300 ease-in-out
         h-[calc(100vh-72px)] top-[72px] 
         md:h-screen md:top-0             
@@ -80,46 +83,88 @@ const Dashboard = () => {
 
         {/* Sidebar Navigation */}
         <nav className="flex flex-col gap-3 my-4">
+          {/* Profile */}
           <NavLink
             to="/dashboard/profile"
             onClick={handleMobileNavClick}
             className={({ isActive }) =>
-              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${
-                isActive
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
               }`
             }
           >
-            <FaUserCircle /> Profile
+            <FaUserCircle className="text-red-600" /> Profile
           </NavLink>
 
+          {/* Pending Bookings */}
           <NavLink
             to="/dashboard/pending-bookings"
             onClick={handleMobileNavClick}
             className={({ isActive }) =>
-              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${
-                isActive
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
               }`
             }
           >
-            <FaClock /> Pending Bookings
+            <MdPendingActions className="text-cyan-500"/> Pending Bookings
           </NavLink>
 
+          {/* Approved Bookings */}
+          <NavLink
+            to="/dashboard/approved-bookings"
+            onClick={handleMobileNavClick}
+            className={({ isActive }) =>
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              }`
+            }
+          >
+            <FaCheckCircle className="text-[#00A63E]" /> Approved Bookings
+          </NavLink>
+
+          {/* Confirmed Bookings */}
+          <NavLink
+            to="/dashboard/confirmed-bookings"
+            onClick={handleMobileNavClick}
+            className={({ isActive }) =>
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              }`
+            }
+          >
+            <BsBookmarkCheckFill className="text-lime-400" /> Confirmed Bookings
+          </NavLink>
+
+          {/* Payment History */}
+          <NavLink
+            to="/dashboard/payments-history"
+            onClick={handleMobileNavClick}
+            className={({ isActive }) =>
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              }`
+            }
+          >
+            <RiMoneyDollarCircleFill /> Payment History
+          </NavLink>
+
+          {/* Announcements */}
           <NavLink
             to="/dashboard/announcements"
             onClick={handleMobileNavClick}
             className={({ isActive }) =>
-              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${
-                isActive
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+              `flex items-center gap-2 py-3 px-4 rounded-lg font-hoover text-xl w-full mx-auto ${isActive
+                ? "bg-black text-white"
+                : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
               }`
             }
           >
-            <FaBullhorn /> Announcements
+            <FaBullhorn className="text-orange-400"/> Announcements
           </NavLink>
         </nav>
 
@@ -137,7 +182,7 @@ const Dashboard = () => {
       <main
         className={`flex-1 p-4 md:p-8
         mt-[72px] md:mt-5
-        md:ml-[250px] lg:ml-80`}
+        md:ml-[280px] lg:ml-80`}
       >
         <Outlet />
       </main>

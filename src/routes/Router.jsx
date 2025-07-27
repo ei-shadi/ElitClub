@@ -14,6 +14,12 @@ import Profile from "../pages/Dashboard/Profile";
 import Announcement from "../pages/Dashboard/Announcements";
 import PendingBookings from "../pages/Dashboard/PendingBookings";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
+import ApprovedBookings from "../pages/Dashboard/Member Dashboard/ApprovedBookings";
+import ConfirmedBookings from "../pages/Dashboard/Member Dashboard/ConfirmedBookings";
+import Payments from "../pages/Dashboard/Member Dashboard/Payments";
+import PaymentsHistory from "../pages/Dashboard/Member Dashboard/PaymentsHistory";
+
+
 
 
 
@@ -75,6 +81,22 @@ const router = createBrowserRouter([
       {
         path: "pending-bookings",
         Component: PendingBookings
+      },
+      {
+        path: "approved-bookings",
+        Component: ApprovedBookings
+      },
+      {
+        path: "payments",
+        Component: Payments
+      },
+      {
+        path: "confirmed-bookings",
+        Component: ConfirmedBookings
+      },
+      {
+        path: "payments-history",
+        Component: PaymentsHistory
       },
       {
         path: "announcements",
