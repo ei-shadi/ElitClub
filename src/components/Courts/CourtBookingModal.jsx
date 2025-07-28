@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import Button from '../../shared/Button.jsx';
 import { TbLocationFilled } from 'react-icons/tb';
 import showSwal from '../../shared/showSwal.js';
 import useAxiosSecure from '../../hooks/useAxiosSecure.jsx';
 import { useMutation } from '@tanstack/react-query';
+import Spinner from '../../shared/Spinner.jsx';
 
 const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
   const [selectedSlots, setSelectedSlots] = useState([]);
@@ -17,6 +18,7 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
     }
   }, [isOpen]);
 
+  // handle booking
   const bookingMutation = useMutation({
     mutationFn: (bookingData) =>
       axiosSecure.post('/bookings', bookingData),
@@ -69,9 +71,10 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
       });
       return;
     }
-
+    // Prepare the booking data
     const bookingData = {
-      user: user.email,
+      name: user.name,
+      email: user.email,
       courtId: court.id,
       courtType: court.courtType,
       slots: selectedSlots,
@@ -82,6 +85,7 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
     };
 
     bookingMutation.mutate(bookingData);
+    console.log(bookingData);
   };
 
   const totalPrice = court.price * selectedSlots.length;
@@ -165,7 +169,7 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
                 className="md:flex-1 text-center"
               />
               <Button
-                text={bookingMutation.isPending ? "Booking..." : "Confirm Booking"}
+                text={bookingMutation.isPending ? <Spinner /> : "Confirm Booking"}
                 onClick={handleSubmit}
                 disabled={bookingMutation.isPending}
                 className="md:flex-1"

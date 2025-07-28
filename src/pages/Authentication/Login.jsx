@@ -59,7 +59,7 @@ const Login = () => {
           email: user.email,
           role: 'user',
           photoURL: user.photoURL,
-          created_at: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
           last_login: new Date().toISOString()
         }
         setUser(user);

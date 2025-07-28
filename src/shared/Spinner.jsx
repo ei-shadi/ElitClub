@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LoadingAnimation = () => {
+const Spinner = () => {
   return (
     <StyledWrapper>
       <div className="dot-spinner">
@@ -22,7 +22,7 @@ const StyledWrapper = styled.div`
   .dot-spinner {
     --uib-size: 2.8rem;
     --uib-speed: .9s;
-    --uib-color: #183153;
+    --uib-color: #FFFFFF; /* Changed to white */
     position: relative;
     display: flex;
     align-items: center;
@@ -51,7 +51,7 @@ const StyledWrapper = styled.div`
     transform: scale(0);
     opacity: 0.5;
     animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Updated shadow */
   }
 
   .dot-spinner__dot:nth-child(2) {
@@ -121,6 +121,7 @@ const StyledWrapper = styled.div`
       transform: scale(1);
       opacity: 1;
     }
-  }`;
+  }
+`;
 
-export default LoadingAnimation;
+export default Spinner;

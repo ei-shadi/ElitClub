@@ -3,19 +3,18 @@ import { useNavigate } from "react-router";
 import { TbLocationFilled } from "react-icons/tb";
 import { FaThLarge, FaTable } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../hooks/useAuth";
-
 import Loader from "../shared/Loader";
 import Pagination from "../components/Pagination";
 import CourtBookingModal from "../components/Courts/CourtBookingModal";
 import CourtCardView from "../components/Courts/CourtCardView";
 import CourtTableView from "../components/Courts/CourtTableView";
 import useAxios from "../hooks/useAxios";
+import useUserData from "../hooks/useUserData";
 
 const Courts = () => {
-  const { user } = useAuth();
   const navigate = useNavigate();
   const axiosInstance = useAxios();
+  const { data: user } = useUserData();
 
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);

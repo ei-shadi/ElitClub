@@ -10,7 +10,7 @@ const PendingBookings = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  const [deleteId, setDeleteId] = useState(null); // store id to delete
+  const [deleteId, setDeleteId] = useState(null); 
   const [modalOpen, setModalOpen] = useState(false);
 
   // Fetch pending bookings
@@ -45,6 +45,7 @@ const PendingBookings = () => {
     setDeleteId(null);
   };
 
+  // Handle Delete Confirm
   const handleDeleteConfirm = () => {
     if (deleteId) {
       deleteMutation.mutate(deleteId);

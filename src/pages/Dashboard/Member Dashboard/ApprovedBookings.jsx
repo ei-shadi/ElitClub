@@ -6,7 +6,7 @@ import { MdSportsTennis } from "react-icons/md";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { TbLocationFilled } from "react-icons/tb";
 import showSwal from "../../../shared/showSwal";
-import LoadingAnimation from "../../../shared/LoadingAnimation";
+import LoadingAnimation from "../../../shared/Spinner";
 import { FcApproval } from "react-icons/fc";
 import Loader from "../../../shared/Loader";
 

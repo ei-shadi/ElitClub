@@ -28,6 +28,7 @@ const AuthProvider = ({ children }) => {
   const logOutUser = () => {
     return signOut(auth)
   }
+  
 
   // Auth Observer
   useEffect(() => {

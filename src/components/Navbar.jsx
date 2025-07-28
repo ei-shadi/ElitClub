@@ -66,9 +66,8 @@ const Navbar = () => {
   }, []);
 
   // Fetch MongoDB user by email
-  const { data: userDB, isLoading, isError } = useUserData();
+  const { data: userDB, isError } = useUserData();
 
-  if (isLoading) return <Loader />;
   if (isError) return "Error!";
 
   const navLinks = [

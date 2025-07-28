@@ -6,7 +6,7 @@ import Button from "../../shared/Button";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import AdminProfileCard from "./Admin Dashboard/AdminProfileCard"
+import AdminProfileCard from "./Admin Dashboard/AdminProfileCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxios from "../../hooks/useAxios";
 import useUserData from "../../hooks/useUserData";
@@ -49,7 +49,7 @@ const Profile = () => {
       </div>
     );
 
-  const { name, email, photoURL, created_at, role } = userData || {};
+  const { name, email, photoURL, createdAt, role, approvedAt } = userData || {};
 
   // Handle Logout
   const handleLogout = () => {
@@ -74,7 +74,10 @@ const Profile = () => {
     <div className="flex flex-col items-center justify-center min-h-[80vh] mt-10 px-4">
       <div className="w-full max-w-xl bg-gradient-to-br from-[#FF02CB] to-black text-black rounded-2xl shadow-xl p-12 flex flex-col items-center">
         <img
-          src={photoURL || "https://i.ibb.co/2FsfXqM/default-user.png"}
+          src={
+            photoURL ||
+            "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+          }
           alt="User"
           className="w-48 h-48 object-cover rounded-md mb-6"
         />
@@ -82,18 +85,33 @@ const Profile = () => {
           {name}
         </h2>
         <p className="text-gray-300 text-xl italic font-semibold">{email}</p>
-        <p className="text-md text-gray-200 font-semibold italic mt-2">
-          Registered on :{" "}
-          <span className="font-medium">
-            {created_at
-              ? format(new Date(created_at), "MMMM dd, yyyy")
-              : "N/A"}
-          </span>
-        </p>
+
+        {/* Conditionally render based on role */}
+        {role?.toLowerCase() === "member" ? (
+          <p className="text-md text-gray-200 font-semibold italic mt-2">
+            Member on :{" "}
+            <span className="font-medium">
+              {approvedAt
+                ? format(new Date(approvedAt), "MMMM dd, yyyy")
+                : "Pending"}
+            </span>
+          </p>
+        ) : (
+          <p className="text-md text-gray-200 font-semibold italic mt-2">
+            Registered on :{" "}
+            <span className="font-medium">
+              {createdAt
+                ? format(new Date(createdAt), "MMMM dd, yyyy")
+                : "N/A"}
+            </span>
+          </p>
+        )}
+
         <p className="text-gray-700 dark:text-gray-300 mt-2 text-lg font-hoover uppercase">
           <strong className="normal-case">ElitClub's :</strong>{" "}
           <span className="text-lime-600">{role || "User"}</span>
         </p>
+
         <div className="mt-6">
           <Button text="Logout" onClick={handleLogout} />
         </div>
