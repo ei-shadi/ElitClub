@@ -10,6 +10,7 @@ import AdminProfileCard from "./Admin Dashboard/AdminProfileCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxios from "../../hooks/useAxios";
 import useUserData from "../../hooks/useUserData";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   const { logOutUser } = useAuth();
@@ -71,63 +72,68 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] mt-10 px-4">
-      <div className="w-full max-w-xl bg-gradient-to-br from-[#FF02CB] to-black text-black rounded-2xl shadow-xl p-12 flex flex-col items-center">
-        <img
-          src={
-            photoURL ||
-            "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-          }
-          alt="User"
-          className="w-48 h-48 object-cover rounded-md mb-6"
-        />
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white pb-2">
-          {name}
-        </h2>
-        <p className="text-gray-300 text-xl italic font-semibold">{email}</p>
-
-        {/* Conditionally render based on role */}
-        {role?.toLowerCase() === "member" ? (
-          <p className="text-md text-gray-200 font-semibold italic mt-2">
-            Member on :{" "}
-            <span className="font-medium">
-              {approvedAt
-                ? format(new Date(approvedAt), "MMMM dd, yyyy")
-                : "Pending"}
-            </span>
-          </p>
-        ) : (
-          <p className="text-md text-gray-200 font-semibold italic mt-2">
-            Registered on :{" "}
-            <span className="font-medium">
-              {createdAt
-                ? format(new Date(createdAt), "MMMM dd, yyyy")
-                : "N/A"}
-            </span>
-          </p>
-        )}
-
-        <p className="text-gray-700 dark:text-gray-300 mt-2 text-lg font-hoover uppercase">
-          <strong className="normal-case">ElitClub's :</strong>{" "}
-          <span className="text-lime-600">{role || "User"}</span>
-        </p>
-
-        <div className="mt-6">
-          <Button text="Logout" onClick={handleLogout} />
-        </div>
-      </div>
-
-      {/* Admin-only dashboard stats */}
-      {role === "admin" && (
-        <div className="w-full max-w-6xl mt-10">
-          <AdminProfileCard
-            courts={courts.length}
-            users={allUsers.length}
-            members={totalMembers}
+    <>
+      <Helmet>
+        <title>My Profile - EliteClub</title>
+      </Helmet>
+      <div className="flex flex-col items-center justify-center min-h-[80vh] mt-10 px-4">
+        <div className="w-full max-w-xl bg-gradient-to-br from-[#FF02CB] to-black text-black rounded-2xl shadow-xl p-12 flex flex-col items-center">
+          <img
+            src={
+              photoURL ||
+              "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+            }
+            alt="User"
+            className="w-48 h-48 object-cover rounded-md mb-6"
           />
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white pb-2">
+            {name}
+          </h2>
+          <p className="text-gray-300 text-xl italic font-semibold">{email}</p>
+
+          {/* Conditionally render based on role */}
+          {role?.toLowerCase() === "member" ? (
+            <p className="text-md text-gray-200 font-semibold italic mt-2">
+              Member on :{" "}
+              <span className="font-medium">
+                {approvedAt
+                  ? format(new Date(approvedAt), "MMMM dd, yyyy")
+                  : "Pending"}
+              </span>
+            </p>
+          ) : (
+            <p className="text-md text-gray-200 font-semibold italic mt-2">
+              Registered on :{" "}
+              <span className="font-medium">
+                {createdAt
+                  ? format(new Date(createdAt), "MMMM dd, yyyy")
+                  : "N/A"}
+              </span>
+            </p>
+          )}
+
+          <p className="text-gray-700 dark:text-gray-300 mt-2 text-lg font-hoover uppercase">
+            <strong className="normal-case">ElitClub's :</strong>{" "}
+            <span className="text-lime-600">{role || "User"}</span>
+          </p>
+
+          <div className="mt-6">
+            <Button text="Logout" onClick={handleLogout} />
+          </div>
         </div>
-      )}
-    </div>
+
+        {/* Admin-only dashboard stats */}
+        {role === "admin" && (
+          <div className="w-full max-w-6xl mt-10">
+            <AdminProfileCard
+              courts={courts.length}
+              users={allUsers.length}
+              members={totalMembers}
+            />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

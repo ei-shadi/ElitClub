@@ -4,10 +4,12 @@ import { MdSportsTennis } from "react-icons/md";
 import { TbLocationFilled } from "react-icons/tb";
 import Loader from "../../../shared/Loader";
 import { BsBookmarkCheckFill } from "react-icons/bs";
+import { Helmet } from "react-helmet-async";
 
 const ConfirmedBookings = () => {
   const axiosSecure = useAxiosSecure();
 
+  // Get confirmed bookings
   const {
     data: bookings = [],
     isLoading,
@@ -24,43 +26,49 @@ const ConfirmedBookings = () => {
   if (isError) return <div className="text-center text-red-500 mt-10">Failed to load confirmed bookings.</div>;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
-        <BsBookmarkCheckFill className="text-4xl md:text-5xl text-lime-500" />
-        <span className="text-[#FF02CB]">Confirmed</span> Bookings
-        <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
-      </h2>
+    <>
+      <Helmet>
+        <title>Confirmed Bookings - EliteClub</title>
+      </Helmet>
 
-      {bookings.length === 0 ? (
-        <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Confirmed Bookings Found.</p>
-      ) : (
-        <div className="grid gap-6">
-          {bookings.map((booking) => (
-            <div
-              key={booking._id}
-              className="border border-gray-300 rounded-xl p-6 shadow-md bg-white hover:shadow-xl transition"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-                  <MdSportsTennis className="text-lime-600" />
-                  {booking.courtType} Court
-                </h3>
-                <span className="px-3 py-1 bg-lime-200 text-lime-700 rounded-full text-sm font-medium">
-                  {booking.status}
-                </span>
+      <div className="max-w-5xl mx-auto p-6">
+        <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
+          <BsBookmarkCheckFill className="text-4xl md:text-5xl text-lime-500" />
+          <span className="text-[#FF02CB]">Confirmed</span> Bookings
+          <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
+        </h2>
+
+        {bookings.length === 0 ? (
+          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Confirmed Bookings Found.</p>
+        ) : (
+          <div className="grid gap-6">
+            {bookings.map((booking) => (
+              <div
+                key={booking._id}
+                className="border border-gray-300 rounded-xl p-6 shadow-md bg-white hover:shadow-xl transition"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+                    <MdSportsTennis className="text-lime-600" />
+                    {booking.courtType} Court
+                  </h3>
+                  <span className="px-3 py-1 bg-lime-200 text-lime-700 rounded-full text-sm font-medium">
+                    {booking.status}
+                  </span>
+                </div>
+
+                <p className="text-gray-600 mb-1">📅 <span className="font-medium">{booking.date}</span></p>
+                <p className="text-gray-600 mb-1">⏰ Slots: <span className="font-medium">{booking.slots?.join(", ")}</span></p>
+                <p className="text-gray-700 font-bold mt-2">💰 Total Price: ${booking.price}</p>
+                <p className="text-sm text-gray-400 mt-1">
+                  Booked at: {new Date(booking.createdAt).toLocaleString()}
+                </p>
               </div>
-
-              <p className="text-gray-600 mb-1">📅 <span className="font-medium">{booking.date}</span></p>
-              <p className="text-gray-600 mb-1">⏰ Slots: <span className="font-medium">{booking.slots?.join(", ")}</span></p>
-              <p className="text-gray-700 font-bold mt-2">💰 Total Price: ${booking.price}</p>
-              <p className="text-sm text-gray-400 mt-1">
-                Booked at: {new Date(booking.createdAt).toLocaleString()}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -104,7 +104,7 @@ const Dashboard = () => {
         </Link>
 
         {/* Sidebar Navigation */}
-        <nav className="flex flex-col gap-3 my-4 text-left font-hoover">
+        <nav className="flex flex-col gap-5 my-18 md:my-32 lg:my-20 text-left font-hoover">
           {role === "user" && (
             <>
               {/* Profile */}
@@ -340,6 +340,20 @@ const Dashboard = () => {
                 }
               >
                 <FaTags className="text-pink-500" /> Manage Coupons
+              </NavLink>
+
+              {/* Manage Announcements */}
+              <NavLink
+                to="/dashboard/manage-announcements"
+                onClick={handleMobileNavClick}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-3 px-4 rounded-lg text-xl ${isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+                  }`
+                }
+              >
+                <FaBullhorn className="text-[#FF8904]" /> Manage Announcements
               </NavLink>
             </>
           )}

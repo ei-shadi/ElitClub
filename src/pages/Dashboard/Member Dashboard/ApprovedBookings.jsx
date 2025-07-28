@@ -9,6 +9,7 @@ import showSwal from "../../../shared/showSwal";
 import LoadingAnimation from "../../../shared/Spinner";
 import { FcApproval } from "react-icons/fc";
 import Loader from "../../../shared/Loader";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -67,6 +68,10 @@ const ApprovedBookings = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Approved Bookings - EliteClub</title>
+      </Helmet>
+      
       <div className="max-w-5xl mx-auto p-6">
         <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
           <FcApproval className="text-4xl md:text-5xl" />

@@ -5,6 +5,7 @@ import Loader from "../../../shared/Loader";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { TbLocationFilled } from "react-icons/tb";
 import { FaUsersCog } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -60,55 +61,61 @@ const ManageMembers = () => {
     );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-4xl lg:text-6xl font-extrabold text-gray-700 mb-12 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
-        <FaUsersCog className="text-4xl md:text-5xl text-purple-600" />
-        Manage
-        <span className="text-[#FF02CB]">Members</span>
-        <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
-      </h2>
+    <>
+      <Helmet>
+        <title>Manage Members - EliteClub</title>
+      </Helmet>
+      
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <h2 className="text-4xl lg:text-6xl font-extrabold text-gray-700 mb-12 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
+          <FaUsersCog className="text-4xl md:text-5xl text-purple-600" />
+          Manage
+          <span className="text-[#FF02CB]">Members</span>
+          <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
+        </h2>
 
-      <input
-        type="text"
-        placeholder="Search Member By Name..."
-        className="w-full p-3 mb-6 border-2 focus:outline-[#FF02CB] rounded-md italic"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Search Member By Name..."
+          className="w-full p-3 mb-6 border-2 focus:outline-[#FF02CB] rounded-md italic"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
 
-      {filteredMembers.length === 0 ? (
-        <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Members found. Found.</p>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {filteredMembers.map((member) => (
-            <div
-              key={member._id}
-              className="bg-black shadow-lg rounded-xl p-6 flex flex-col items-center hover:bg-gray-800 duration-300 hover:scale-110"
-            >
-              <img
-                src={
-                  member.photoURL ||
-                  "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-                }
-                alt={member.name}
-                className="w-24 h-24 rounded-full object-cover mb-4"
-              />
-              <h3 className="text-xl font-hoover text-lime-400">
-                {member.name}
-              </h3>
-              <p className="text-gray-300">{member.email}</p>
-
-              <button
-                onClick={() => handleDelete(member._id)}
-                className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 cursor-pointer hover:scale-125 duration-300 ease-in-out"
+        {filteredMembers.length === 0 ? (
+          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Members found. Found.</p>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {filteredMembers.map((member) => (
+              <div
+                key={member._id}
+                className="bg-black shadow-lg rounded-xl p-6 flex flex-col items-center hover:bg-gray-800 duration-300 hover:scale-110"
               >
-                Delete
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+                <img
+                  src={
+                    member.photoURL ||
+                    "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+                  }
+                  alt={member.name}
+                  className="w-24 h-24 rounded-full object-cover mb-4"
+                />
+                <h3 className="text-xl font-hoover text-lime-400">
+                  {member.name}
+                </h3>
+                <p className="text-gray-300">{member.email}</p>
+
+                <button
+                  onClick={() => handleDelete(member._id)}
+                  className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 cursor-pointer hover:scale-125 duration-300 ease-in-out"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

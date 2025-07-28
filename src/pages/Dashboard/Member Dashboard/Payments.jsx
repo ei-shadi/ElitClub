@@ -1,10 +1,14 @@
-import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Payments = () => {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Payment - EliteClub</title>
+      </Helmet>
+
       this is payment
-    </div>
+    </>
   );
 };
 

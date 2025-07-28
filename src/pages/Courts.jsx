@@ -10,6 +10,7 @@ import CourtCardView from "../components/Courts/CourtCardView";
 import CourtTableView from "../components/Courts/CourtTableView";
 import useAxios from "../hooks/useAxios";
 import useUserData from "../hooks/useUserData";
+import { Helmet } from "react-helmet-async";
 
 const Courts = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Courts = () => {
 
   const itemPerPage = viewType === "table" ? 10 : 6;
 
+  // Fetch Courts
   const { data: courtsData = [], isPending, isError, error } = useQuery({
     queryKey: ["courts-data"],
     queryFn: async () => {
@@ -38,6 +40,7 @@ const Courts = () => {
     currentPage * itemPerPage
   );
 
+  // Handle Booking
   const handleBooking = (court) => {
     if (user) {
       setSelectedCourt({
@@ -56,6 +59,10 @@ const Courts = () => {
 
   return (
     <div className="min-h-screen px-4 py-20 md:py-40 max-w-7xl mx-auto">
+      <Helmet>
+        <title>Courts - EliteClub</title>
+      </Helmet>
+      
       {/* Header Section */}
       <div className="flex flex-col gap-6 mb-10 ">
         {/* Centered Title */}

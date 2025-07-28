@@ -3,10 +3,14 @@ import { FaRegSadTear } from "react-icons/fa";
 import Lottie from "lottie-react";
 import ErrorAnimation from "../assets/Lottie/404 Error Page.json";
 import Button from "../shared/Button";
+import { Helmet } from "react-helmet-async";
 
 export default function NotFoundPage() {
   return (
     <div className="min-h-screen  bg-gradient-to-t from-black text-white flex flex-col items-center justify-center px-4 py-10 text-center">
+      <Helmet>
+        <title>Error - EliteClub</title>
+      </Helmet>
       {/* Animation */}
       <div className="w-full max-w-[500px] h-[300px] md:h-[400px]">
         <Lottie animationData={ErrorAnimation} loop={true} />

@@ -24,6 +24,7 @@ import AllUsers from "../pages/Dashboard/Admin Dashboard/AllUsers";
 import ManageCourts from "../pages/Dashboard/Admin Dashboard/ManageCourts";
 import ManageBookings from "../pages/Dashboard/Admin Dashboard/ManageBookings";
 import ManageCoupons from "../pages/Dashboard/Admin Dashboard/ManageCoupons";
+import ManageAnnouncements from "../pages/Dashboard/Admin Dashboard/ManageAnnouncements";
 
 
 
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: "manage-coupons",
         Component: ManageCoupons
+      },
+      {
+        path: "manage-announcements",
+        Component: ManageAnnouncements
       },
       {
         path: "announcements",

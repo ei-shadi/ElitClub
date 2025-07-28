@@ -2,11 +2,16 @@ import Hero from "../components/Home/Hero";
 import AboutClub from "../components/Home/AboutClub";
 import LocationSection from "../components/Home/OurLocation";
 import DiscountCoupons from "../components/Home/DiscountCoupons";
+import { Helmet } from "react-helmet-async";
 
 
 const Home = () => {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Home - EliteClub</title>
+      </Helmet>
+
       {/* Hero Section */}
       <Hero />
       {/* About Section */}
@@ -15,7 +20,7 @@ const Home = () => {
       <LocationSection />
       {/* Promotions Section / Discount Coupons */}
       <DiscountCoupons />
-    </div>
+    </>
   );
 };
 

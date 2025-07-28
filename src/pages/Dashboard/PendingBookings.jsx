@@ -5,12 +5,13 @@ import { MdSportsTennis } from 'react-icons/md';
 import Loader from '../../shared/Loader';
 import { TbLocationFilled } from 'react-icons/tb';
 import showSwal from '../../shared/showSwal';
+import { Helmet } from 'react-helmet-async';
 
 const PendingBookings = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  const [deleteId, setDeleteId] = useState(null); 
+  const [deleteId, setDeleteId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   // Fetch pending bookings
@@ -58,6 +59,10 @@ const PendingBookings = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Pending Bookings - EliteClub</title>
+      </Helmet>
+
       <div className="max-w-5xl mx-auto p-6">
         <h2 className="text-3xl lg:text-6xl font-extrabold text-gray-600 mb-8 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
           <span className="text-[#FF02CB]">⏳ Pending</span> Bookings
