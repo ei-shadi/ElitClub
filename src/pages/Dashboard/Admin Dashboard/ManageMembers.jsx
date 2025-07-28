@@ -83,7 +83,7 @@ const ManageMembers = () => {
           {filteredMembers.map((member) => (
             <div
               key={member._id}
-              className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 flex flex-col items-center"
+              className="bg-black shadow-lg rounded-xl p-6 flex flex-col items-center"
             >
               <img
                 src={

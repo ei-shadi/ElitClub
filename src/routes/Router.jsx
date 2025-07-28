@@ -20,7 +20,7 @@ import Payments from "../pages/Dashboard/Member Dashboard/Payments";
 import PaymentsHistory from "../pages/Dashboard/Member Dashboard/PaymentsHistory";
 import ManageApproval from "../pages/Dashboard/Admin Dashboard/ManageApproval";
 import ManageMembers from "../pages/Dashboard/Admin Dashboard/ManageMembers";
-
+import AllUsers from "../pages/Dashboard/Admin Dashboard/AllUsers";
 
 
 
@@ -107,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "manage-members",
         Component: ManageMembers
+      },
+      {
+        path: "all-users",
+        Component: AllUsers
       },
       {
         path: "announcements",

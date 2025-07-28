@@ -7,6 +7,7 @@ import {
   FaTimes,
   FaCheckCircle,
   FaUsersCog,
+  FaUsers,
 } from "react-icons/fa";
 import { MdPendingActions } from "react-icons/md";
 import { BsBookmarkCheckFill } from "react-icons/bs";
@@ -282,6 +283,19 @@ const Dashboard = () => {
                 <FaUsersCog className="text-purple-600" /> Manage Members
               </NavLink>
 
+              {/* All Users */}
+              <NavLink
+                to="/dashboard/all-users"
+                onClick={handleMobileNavClick}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-3 px-4 rounded-lg text-xl ${isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+                  }`
+                }
+              >
+                <FaUsers className="text-cyan-500" /> All Users
+              </NavLink>
             </>
           )}
 
