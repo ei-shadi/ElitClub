@@ -26,13 +26,13 @@ const Announcements = () => {
       <div className="space-y-6">
         {announcements.length === 0 ? (
           <div className="bg-gradient-to-r from-pink-50 to-purple-50 border border-dashed border-pink-300 text-center py-10 rounded-lg">
-            <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No announcement from Admin!</p>
+            <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Announcement From Admin!</p>
           </div>
         ) : (
           announcements.map((announcement) => (
             <div
               key={announcement.id}
-              className="bg-gradient-to-tr from-white to-pink-50 hover:from-pink-50 hover:to-white transition-all duration-300 shadow-lg rounded-xl p-6 border-l-4 border-[#FF02CB] hover:scale-[1.01]"
+              className="bg-gradient-to-tr from-white to-pink-50 hover:from-pink-50 hover:to-white transition-all duration-300 shadow-lg rounded-xl p-6 border-l-8 border-[#FF02CB] hover:scale-[1.01]"
             >
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
                 📌 {announcement.title}

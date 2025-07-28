@@ -59,7 +59,7 @@ const AllUsers = () => {
           {filteredUsers.map((user) => (
             <div
               key={user._id}
-              className="bg-black shadow-lg rounded-xl p-6 flex flex-col items-center"
+              className="bg-black shadow-lg rounded-xl p-6 flex flex-col items-center hover:bg-gray-800 duration-300 hover:scale-110"
             >
               <img
                 src={
@@ -72,7 +72,7 @@ const AllUsers = () => {
               <h3 className="text-xl font-semibold text-cyan-500 ">
                 {user.name}
               </h3>
-              <p className="text-gray-300">{user.email}</p>
+              <p className="text-gray-300 italic">{user.email}</p>
               <span className="mt-2 px-3 py-1 text-sm bg-lime-500 text-black rounded-full font-bold">
                 Role : <span className="font-semibold uppercase text-gray-100">{user.role || "N/A"}</span>
               </span>

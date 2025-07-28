@@ -16,6 +16,7 @@ import Logo from "../assets/Logo.png";
 import Button from "../shared/Button";
 import Loader from "../shared/Loader";
 import useUserData from "../hooks/useUserData";
+import { FaPersonRunning } from "react-icons/fa6";
 
 
 const Dashboard = () => {
@@ -295,6 +296,20 @@ const Dashboard = () => {
                 }
               >
                 <FaUsers className="text-cyan-500" /> All Users
+              </NavLink>
+              
+              {/* Manage Courts */}
+              <NavLink
+                to="/dashboard/manage-courts"
+                onClick={handleMobileNavClick}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-3 px-4 rounded-lg text-xl ${isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+                  }`
+                }
+              >
+                <FaPersonRunning className="text-amber-500" /> Manage Courts
               </NavLink>
             </>
           )}

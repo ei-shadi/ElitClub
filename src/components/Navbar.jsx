@@ -133,7 +133,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Nav + Avatar */}
+          {/* Desktop Avatar Menu */}
           <ul className="items-center hidden space-x-12 lg:flex">
             {centerNavLinks}
             <div className="hidden lg:flex items-center gap-6 relative">
@@ -181,7 +181,7 @@ const Navbar = () => {
             </div>
           </ul>
 
-          {/* Mobile Avatar + Menu */}
+          {/* Mobile Avatar Menu */}
           <div className="flex items-center gap-3 lg:hidden relative">
             {user && (
               <>

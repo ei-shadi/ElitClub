@@ -21,6 +21,7 @@ import PaymentsHistory from "../pages/Dashboard/Member Dashboard/PaymentsHistory
 import ManageApproval from "../pages/Dashboard/Admin Dashboard/ManageApproval";
 import ManageMembers from "../pages/Dashboard/Admin Dashboard/ManageMembers";
 import AllUsers from "../pages/Dashboard/Admin Dashboard/AllUsers";
+import ManageCourts from "../pages/Dashboard/Admin Dashboard/ManageCourts";
 
 
 
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "all-users",
         Component: AllUsers
+      },
+      {
+        path: "manage-courts",
+        Component: ManageCourts
       },
       {
         path: "announcements",
