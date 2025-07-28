@@ -9,6 +9,7 @@ import {
   FaUsersCog,
   FaUsers,
   FaCalendarCheck,
+  FaTags,
 } from "react-icons/fa";
 import { MdPendingActions } from "react-icons/md";
 import { BsBookmarkCheckFill } from "react-icons/bs";
@@ -325,6 +326,20 @@ const Dashboard = () => {
                 }
               >
                 <FaCalendarCheck className="text-emerald-500" /> Manage Bookings
+              </NavLink>
+
+              {/* Manage Coupons */}
+              <NavLink
+                to="/dashboard/manage-coupons"
+                onClick={handleMobileNavClick}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-3 px-4 rounded-lg text-xl ${isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+                  }`
+                }
+              >
+                <FaTags className="text-pink-500" /> Manage Coupons
               </NavLink>
             </>
           )}

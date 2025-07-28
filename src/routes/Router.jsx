@@ -23,6 +23,7 @@ import ManageMembers from "../pages/Dashboard/Admin Dashboard/ManageMembers";
 import AllUsers from "../pages/Dashboard/Admin Dashboard/AllUsers";
 import ManageCourts from "../pages/Dashboard/Admin Dashboard/ManageCourts";
 import ManageBookings from "../pages/Dashboard/Admin Dashboard/ManageBookings";
+import ManageCoupons from "../pages/Dashboard/Admin Dashboard/ManageCoupons";
 
 
 
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: "manage-bookings",
         Component: ManageBookings
+      },
+      {
+        path: "manage-coupons",
+        Component: ManageCoupons
       },
       {
         path: "announcements",
