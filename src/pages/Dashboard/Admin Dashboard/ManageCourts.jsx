@@ -107,9 +107,10 @@ const ManageCourts = () => {
         Manage <span className="text-[#FF02CB]">Courts</span>
         <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
       </h2>
-      <div className="flex justify-end mb-6">
+      <div className="flex items-center justify-between mb-6">
+        <h3 className='bg-green-600 text-white font-bold py-2 px-4 lg:px-8 rounded-full text-xl lg:text-2xl'>Total Courts : {courts.length}</h3>
         <button
-          className="text-white bg-[#FF02CB] hover:bg-black hover:scale-115 duration-300 font-medium rounded-lg text-sm lg:text-xl px-5 py-2 cursor-pointer flex items-center gap-2"
+          className="text-white bg-[#FF02CB] hover:bg-black hover:scale-115 duration-300 font-medium rounded-lg text-xl lg:text-2xl px-5 py-2 cursor-pointer flex items-center gap-2"
           onClick={() => {
             setFormData({ courtType: '', slotTimes: '', price: '', image: '' });
             setIsEditMode(false);

@@ -66,9 +66,7 @@ const ManageApproval = () => {
       </h2>
 
       {bookings.length === 0 ? (
-        <p className="text-center text-gray-500 text-lg">
-          No pending bookings available.
-        </p>
+        <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Pending Bookings Available.</p>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {bookings.map((booking) => (

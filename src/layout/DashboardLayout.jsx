@@ -8,6 +8,7 @@ import {
   FaCheckCircle,
   FaUsersCog,
   FaUsers,
+  FaCalendarCheck,
 } from "react-icons/fa";
 import { MdPendingActions } from "react-icons/md";
 import { BsBookmarkCheckFill } from "react-icons/bs";
@@ -310,6 +311,20 @@ const Dashboard = () => {
                 }
               >
                 <FaPersonRunning className="text-amber-500" /> Manage Courts
+              </NavLink>
+              
+              {/* Manage Bookings */}
+              <NavLink
+                to="/dashboard/manage-bookings"
+                onClick={handleMobileNavClick}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-3 px-4 rounded-lg text-xl ${isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#FF02CB]"
+                  }`
+                }
+              >
+                <FaCalendarCheck className="text-emerald-500" /> Manage Bookings
               </NavLink>
             </>
           )}
