@@ -155,7 +155,7 @@ const Navbar = () => {
                       ref={dropdownRef}
                       className="absolute top-14 right-2 bg-white rounded-xl shadow-xl p-4 min-w-[250px] z-50 space-y-2 text-center"
                     >
-                      <p className="text-gray-600 text-xl font-hoover italic bg-amber-300 py-2 px-2 rounded-xl">
+                      <p className="text-black text-xl font-hoover italic py-2 px-2 rounded-xl">
                         {userDB?.name || user.displayName || user.email}
                       </p>
                       <Link

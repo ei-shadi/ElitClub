@@ -144,7 +144,7 @@ const DiscountCoupons = () => {
                     <span className="backdrop-blur bg-gradient-to-r from-pink-500/40 to-fuchsia-500/30 border border-pink-400 text-white font-semibold px-4 md:px-8 py-10 rounded-4xl shadow-md hover:scale-105 transition-all duration-300 text-2xl sm:text-3xl">
                       <p className="pb-4 text-left">🎁 Coupon:</p>
                       <p className="bg-white px-4 md:px-8 py-2 rounded-4xl text-black text-lg sm:text-2xl font-hoover">
-                        {coupon.coupon} — {coupon.discount} OFF
+                        {coupon.coupon} — {coupon.discount}% OFF
                       </p>
                     </span>
                     <Button text="Claim Coupon" onClick={() => handleCouponClaim(coupon.coupon)} />

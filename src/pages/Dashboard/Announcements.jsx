@@ -46,7 +46,7 @@ const Announcements = () => {
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-2">{announcement.message}</p>
                 <p className="text-xs text-gray-500 text-right mt-4 italic">
-                  📅 {new Date(announcement.date).toLocaleDateString("en-US", {
+                  📅 {new Date(announcement.createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

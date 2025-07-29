@@ -13,12 +13,11 @@ import {
 } from "react-icons/fa";
 import { MdPendingActions } from "react-icons/md";
 import { BsBookmarkCheckFill } from "react-icons/bs";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import Logo from "../assets/Logo.png";
 import Button from "../shared/Button";
 import Loader from "../shared/Loader";
 import useUserData from "../hooks/useUserData";
-import { FaPersonRunning } from "react-icons/fa6";
+import { FaHandHoldingDollar, FaPersonRunning } from "react-icons/fa6";
 
 
 const Dashboard = () => {
@@ -105,6 +104,7 @@ const Dashboard = () => {
 
         {/* Sidebar Navigation */}
         <nav className="flex flex-col gap-5 my-18 md:my-32 lg:my-20 text-left font-hoover">
+          {/* User Dashboard routes */}
           {role === "user" && (
             <>
               {/* Profile */}
@@ -150,7 +150,6 @@ const Dashboard = () => {
               </NavLink>
             </>
           )}
-
 
           {/* Member Dashboard routes */}
           {role === "member" && (
@@ -222,7 +221,7 @@ const Dashboard = () => {
                   }`
                 }
               >
-                <RiMoneyDollarCircleFill className="text-amber-500" /> Payment History
+                <FaHandHoldingDollar className="text-yellow-500 text-2xl" /> Payment History
               </NavLink>
 
               {/* Announcements */}
