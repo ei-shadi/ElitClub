@@ -11,15 +11,15 @@ import {
 import Loader from "../../../shared/Loader";
 import { TbLocationFilled } from "react-icons/tb";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const ManageAnnouncements = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const [form, setForm] = useState({ title: "", message: "" }); // use message here to match backend
+  const [form, setForm] = useState({ title: "", message: "" });
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // GET Announcements
   const { data: announcements = [], isLoading } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
@@ -28,7 +28,6 @@ const ManageAnnouncements = () => {
     },
   });
 
-  // ADD / UPDATE Announcement
   const mutation = useMutation({
     mutationFn: async (data) => {
       if (editingId) {
@@ -38,14 +37,41 @@ const ManageAnnouncements = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["announcements"]);
+      Swal.fire({
+        icon: "success",
+        title: editingId ? "Announcement Updated!" : "Announcement Added!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       resetForm();
+    },
+    onError: () => {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong!",
+        text: "Please try again.",
+      });
     },
   });
 
-  // DELETE Announcement
   const deleteMutation = useMutation({
     mutationFn: async (id) => axiosSecure.delete(`/announcements/${id}`),
-    onSuccess: () => queryClient.invalidateQueries(["announcements"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["announcements"]);
+      Swal.fire({
+        icon: "success",
+        title: "Deleted Successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    onError: () => {
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed!",
+        text: "Something went wrong.",
+      });
+    },
   });
 
   const resetForm = () => {
@@ -72,7 +98,6 @@ const ManageAnnouncements = () => {
 
   if (isLoading) return <Loader />;
 
-  // Date format options
   const dateOptions = {
     day: "2-digit",
     month: "short",
@@ -140,7 +165,7 @@ const ManageAnnouncements = () => {
 
         {/* Table View */}
         {filteredAnnouncements.length === 0 ? (
-          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto text-xl md:text-2xl">
+          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto text-xl md:text-2xl font-hoover">
             🚫 No Announcements Found.
           </p>
         ) : (
@@ -166,9 +191,9 @@ const ManageAnnouncements = () => {
                       <td>
                         {a.createdAt
                           ? new Date(a.createdAt).toLocaleDateString(
-                            "en-US",
-                            dateOptions
-                          )
+                              "en-US",
+                              dateOptions
+                            )
                           : "N/A"}
                       </td>
                       <td className="flex gap-4 items-center mt-2">
@@ -179,7 +204,21 @@ const ManageAnnouncements = () => {
                           <FaEdit />
                         </button>
                         <button
-                          onClick={() => deleteMutation.mutate(a._id)}
+                          onClick={() => {
+                            Swal.fire({
+                              title: "Are you sure?",
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#d33",
+                              cancelButtonColor: "#3085d6",
+                              confirmButtonText: "Yes, delete it!",
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                deleteMutation.mutate(a._id);
+                              }
+                            });
+                          }}
                           className="text-red-600 bg-black px-3 py-3 rounded-full cursor-pointer hover:text-white hover:scale-125 hover:bg-red-600 duration-300 ease-in-out"
                         >
                           <FaTrash />
@@ -199,13 +238,15 @@ const ManageAnnouncements = () => {
                   className="bg-white p-4 rounded-xl shadow-md border flex flex-col gap-2"
                 >
                   <div className="flex flex-col justify-start gap-1">
-                    <h3 className="text-xl font-bold text-pink-600">{a.title}</h3>
+                    <h3 className="text-xl font-bold text-pink-600">
+                      {a.title}
+                    </h3>
                     <span className="text-sm text-gray-500">
                       {a.createdAt
                         ? new Date(a.createdAt).toLocaleDateString(
-                          "en-US",
-                          dateOptions
-                        )
+                            "en-US",
+                            dateOptions
+                          )
                         : "N/A"}
                     </span>
                   </div>
@@ -218,7 +259,21 @@ const ManageAnnouncements = () => {
                       <FaEdit />
                     </button>
                     <button
-                      onClick={() => deleteMutation.mutate(a._id)}
+                      onClick={() => {
+                        Swal.fire({
+                          title: "Are you sure?",
+                          text: "You won't be able to revert this!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#d33",
+                          cancelButtonColor: "#3085d6",
+                          confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            deleteMutation.mutate(a._id);
+                          }
+                        });
+                      }}
                       className="text-red-600 bg-black px-3 py-3 rounded-full cursor-pointer hover:text-white hover:scale-125 hover:bg-red-600 duration-300 ease-in-out"
                     >
                       <FaTrash />

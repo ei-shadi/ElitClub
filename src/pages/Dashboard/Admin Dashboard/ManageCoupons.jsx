@@ -5,6 +5,7 @@ import { FaEdit, FaTrash, FaTags, FaSearch, FaPlus } from "react-icons/fa";
 import Loader from "../../../shared/Loader";
 import { TbLocationFilled } from "react-icons/tb";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const ManageCoupons = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,7 +14,6 @@ const ManageCoupons = () => {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // GET Coupons
   const { data: coupons = [], isLoading } = useQuery({
     queryKey: ["coupons"],
     queryFn: async () => {
@@ -22,7 +22,6 @@ const ManageCoupons = () => {
     },
   });
 
-  // ADD / UPDATE Coupon
   const mutation = useMutation({
     mutationFn: async (data) => {
       if (editingId) {
@@ -32,32 +31,76 @@ const ManageCoupons = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["coupons"]);
+      Swal.fire({
+        icon: "success",
+        title: editingId ? "Coupon Updated!" : "Coupon Added!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       resetForm();
+    },
+    onError: () => {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong!",
+        text: "Please try again.",
+      });
     },
   });
 
-  // DELETE Coupon
   const deleteMutation = useMutation({
     mutationFn: async (id) => axiosSecure.delete(`/coupons/${id}`),
-    onSuccess: () => queryClient.invalidateQueries(["coupons"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["coupons"]);
+      Swal.fire({
+        icon: "success",
+        title: "Coupon Deleted!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    onError: () => {
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed!",
+        text: "Something went wrong.",
+      });
+    },
   });
 
-  // Reset Form
   const resetForm = () => {
     setForm({ coupon: "", discount: "", description: "" });
     setEditingId(null);
   };
 
-  // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(form);
   };
 
-  // Handle Edit
   const handleEdit = (coupon) => {
-    setForm({ coupon: coupon.coupon, discount: coupon.discount, description: coupon.description });
+    setForm({
+      coupon: coupon.coupon,
+      discount: coupon.discount,
+      description: coupon.description,
+    });
     setEditingId(coupon._id);
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won’t be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate(id);
+      }
+    });
   };
 
   const filteredCoupons = coupons.filter((c) =>
@@ -71,12 +114,11 @@ const ManageCoupons = () => {
       <Helmet>
         <title>Manage Coupons - EliteClub</title>
       </Helmet>
-      
+
       <div className="p-6">
         <h2 className="text-4xl lg:text-6xl font-extrabold text-gray-700 mb-12 text-center drop-shadow-sm flex flex-wrap items-center justify-center gap-3">
           <FaTags className="text-4xl md:text-5xl text-[#FF02CB]" />
-          Manage
-          <span className="text-[#FF02CB]">Coupons</span>
+          Manage <span className="text-[#FF02CB]">Coupons</span>
           <TbLocationFilled className="rotate-180 text-4xl md:text-5xl" />
         </h2>
 
@@ -128,7 +170,6 @@ const ManageCoupons = () => {
             className="w-full px-4 py-2 rounded border"
           />
           <div className="flex justify-center">
-
             <button
               type="submit"
               className="bg-pink-600 text-white text-xl px-5 py-2 rounded hover:bg-black hover:scale-120 cursor-pointer duration-300 ease-in-out transition flex items-center gap-2"
@@ -140,7 +181,9 @@ const ManageCoupons = () => {
 
         {/* Table View (Desktop) */}
         {filteredCoupons.length === 0 ? (
-          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto font-hoover text-xl md:text-2xl">🚫 No Coupons Found.</p>
+          <p className="text-center text-gray-500 bg-white py-2 px-10 rounded-2xl w-fit mx-auto text-xl md:text-2xl">
+            🚫 No Coupons Found.
+          </p>
         ) : (
           <>
             <div className="overflow-x-auto hidden lg:block">
@@ -169,7 +212,7 @@ const ManageCoupons = () => {
                           <FaEdit />
                         </button>
                         <button
-                          onClick={() => deleteMutation.mutate(coupon._id)}
+                          onClick={() => handleDelete(coupon._id)}
                           className="text-red-600 bg-black px-3 py-3 rounded-full cursor-pointer hover:text-white hover:scale-125 hover:bg-red-600 duration-300 ease-in-out"
                         >
                           <FaTrash />
@@ -203,7 +246,7 @@ const ManageCoupons = () => {
                       <FaEdit />
                     </button>
                     <button
-                      onClick={() => deleteMutation.mutate(coupon._id)}
+                      onClick={() => handleDelete(coupon._id)}
                       className="text-red-600 bg-black px-3 py-3 rounded-full cursor-pointer hover:text-white hover:scale-125 hover:bg-red-600 duration-300 ease-in-out"
                     >
                       <FaTrash />
