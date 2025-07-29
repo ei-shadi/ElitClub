@@ -85,7 +85,6 @@ const CourtBookingModal = ({ isOpen, onRequestClose, court, user }) => {
     };
 
     bookingMutation.mutate(bookingData);
-    console.log(bookingData);
   };
 
   const totalPrice = court.price * selectedSlots.length;

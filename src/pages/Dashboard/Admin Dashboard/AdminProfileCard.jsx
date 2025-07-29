@@ -4,9 +4,6 @@ import { MdSportsTennis } from "react-icons/md";
 const AdminProfileCard = ({ courts, users, members }) => {
   return (
     <>
-      <Helmet>
-        <title>My Profile - EliteClub</title>
-      </Helmet>
       <div className="grid lg:grid-cols-3 gap-6 mt-8 w-full">
         {/* Total Courts */}
         <div className="bg-white dark:bg-gray-900 border-l-8 border-r-8 border-[#FF02CB] rounded-xl shadow-lg p-6 flex flex-col items-center justify-center text-center space-y-2">
