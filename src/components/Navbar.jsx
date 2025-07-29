@@ -117,7 +117,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
+      className={`fixed top-0 left-0 w-full z-500 transition-all duration-500 ${isScrolled
           ? "backdrop-blur-md"
           : "lg:bg-transparent backdrop-blur-md bg-[#EFEAE6]/20 lg:backdrop-blur-none"
         }`}
