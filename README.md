@@ -17,7 +17,7 @@
 
 ---
 
-## 🚀 Features
+<h2 align="center">🚀 Features</h2>
 
 ✅ Role-based access control (Admin / Member / Guest)  
 ✅ Firebase Authentication (Login / Register)  
@@ -32,7 +32,7 @@
 
 ---
 
-## ⚙️ Installation & Setup
+<h2 align="center">⚙️ Installation & Setup</h2>
 
 1. **Clone the repository:**
 ```bash
@@ -64,14 +64,14 @@ node index.js
 
 ---
 
-## 🌐 Live Site
+<h2 align="center">🌐 Live Site</h2>
 
 🎯 **Visit Live**  
 👉 <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">Open EliteClub Now...</a>
 
 ---
 
-## 📦 API Endpoints (Express + MongoDB + Firebase Auth)
+<h2 align="center">📦 API Endpoints (Express + MongoDB + Firebase Auth)</h2>
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -90,7 +90,7 @@ node index.js
 
 ---
 
-## 🧪 Tech Stack
+<h2 align="center">🤖 Tech Stack</h2>
 
 | Technology | Purpose |
 |------------|---------|
@@ -106,7 +106,7 @@ node index.js
 
 ---
 
-## 👥 User Roles
+<h2 align="center">👥 User Roles</h2>
 
 - **Admin**: Full access to manage users, bookings, courts, payments, and announcements.  
 - **Member**: Can book courts, view announcements, and apply coupons.  
