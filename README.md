@@ -1,9 +1,8 @@
 
 <div align="center">
   <h1>
-    🏃‍♂️‍➡️
     <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">
-      <strong>EliteClub</strong>
+      🏃‍♂️‍➡️ <strong>EliteClub</strong>
     </a>
   </h1>
   <p><strong>All-in-one Sports Club Management System (EliteClub) for a single club.</strong></p>
