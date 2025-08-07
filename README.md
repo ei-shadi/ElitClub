@@ -91,56 +91,20 @@ node index.js
 ---
 <h2 align="center">🤖 Tech Stack</h2>
 
-<table align="center">
-  <tr>
-    <th>🛠️ Technology</th>
-    <th>💡 Purpose</th>
-  </tr>
-  <tr>
-    <td>⚛ <strong>React</strong></td>
-    <td>Frontend UI</td>
-  </tr>
-  <tr>
-    <td>🎨 <strong>Tailwind CSS</strong> + 🌼 <strong>DaisyUI</strong></td>
-    <td>Styling & Components</td>
-  </tr>
-  <tr>
-    <td>🔐 <strong>Firebase</strong></td>
-    <td>Auth & Admin SDK</td>
-  </tr>
-  <tr>
-    <td>🚂 <strong>Express.js</strong></td>
-    <td>Backend Framework</td>
-  </tr>
-  <tr>
-    <td>🍃 <strong>MongoDB</strong></td>
-    <td>Database</td>
-  </tr>
-  <tr>
-    <td>🧭 <strong>React Router</strong></td>
-    <td>Client Routing</td>
-  </tr>
-  <tr>
-    <td>🧰 <strong>TanStack Query</strong></td>
-    <td>Data Fetching & Caching</td>
-  </tr>
-  <tr>
-    <td>💳 <strong>Stripe</strong></td>
-    <td>Payment Integration</td>
-  </tr>
-  <tr>
-    <td>🎯 <strong>React Icons</strong></td>
-    <td>Icons</td>
-  </tr>
-  <tr>
-    <td>🧠 <strong>React Helmet Async</strong></td>
-    <td>SEO Meta</td>
-  </tr>
-  <tr>
-    <td>🔔 <strong>React Toast</strong> & 💬 <strong>SweetAlert2</strong></td>
-    <td>Notifications</td>
-  </tr>
-</table>
+| 🛠️ Technology | 💡 Purpose |
+|---------------|------------|
+| ⚛ **React** | Frontend UI |
+| 🎨 **Tailwind CSS** + 🌼 **DaisyUI** | Styling & Components |
+| 🔐 **Firebase** | Auth & Admin SDK |
+| 🚂 **Express.js** | Backend Framework |
+| 🍃 **MongoDB** | Database |
+| 🧭 **React Router** | Client Routing |
+| 🧰 **TanStack Query** | Data Fetching & Caching |
+| 💳 **Stripe** | Payment Integration |
+| 🎯 **React Icons** | Icons |
+| 🧠 **React Helmet Async** | SEO Meta |
+| 🔔 **React Toast** & 💬 **SweetAlert2** | Notifications |
+
 
 ---
 
