@@ -1,7 +1,7 @@
 
 <div align="center">
   <h1>
-    <img src="https://i.ibb.co/ksYRTj6k/Logo.png" alt="EliteClub Logo" width="60" height="60" />
+    🏃‍♂️‍➡️
     <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">
       <strong>EliteClub</strong>
     </a>
