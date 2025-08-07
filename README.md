@@ -18,7 +18,7 @@
 
 <h2 align="center">🚀 Features</h2>
 
-* 🛡️ **Role-based Access Control** — Admin / Member / Guest  
+* 🛡️ **Role-based Access Control** — Admin / Member / User  
 * 🔐 **Firebase Authentication** — Login / Register  
 * 🎾 **Court & Session Booking** — With admin approval system  
 * 👥 **Member Management** — Firebase user sync  
