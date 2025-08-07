@@ -11,7 +11,7 @@
 
 ---
 
-## ✨ Overview
+<h2 align="center">✨ Overview</h2>
 
 **EliteClub** is a comprehensive Sports Club Management System tailored for a single sports club. It facilitates seamless user registration, court booking, payment tracking, announcements, and admin functionalities with full authentication, authorization, and real-time data operations.
 
