@@ -18,16 +18,17 @@
 
 <h2 align="center">🚀 Features</h2>
 
-🛡️ **Role-based Access Control** — Admin / Member / Guest
-🔐 **Firebase Authentication** — Login / Register
-🎾 **Court & Session Booking** — With admin approval system
-👥 **Member Management** — Firebase user sync
-🎟️ **Coupon System** — Smart validation & discounts
-📢 **Announcement Management** — Create & update club news
-💳 **Stripe Payments** — Secure and tracked payments
-⚡ **Realtime Feedback** — Toasts & modals for instant alerts
-🧠 **SEO Optimization** — Helmet Async for dynamic meta tags
-📱 **Responsive UI** — Tailwind CSS + DaisyUI for all devices
+* 🛡️ **Role-based Access Control** — Admin / Member / Guest  
+* 🔐 **Firebase Authentication** — Login / Register  
+* 🎾 **Court & Session Booking** — With admin approval system  
+* 👥 **Member Management** — Firebase user sync  
+* 🎟️ **Coupon System** — Smart validation & discounts  
+* 📢 **Announcements** — Create and update club news  
+* 💳 **Stripe Payments** — Integrated, secure payment tracking  
+* ⚡ **Realtime Feedback** — Toasts & modals for instant alerts  
+* 🧠 **SEO Optimization** — Dynamic meta tags via Helmet Async  
+* 💻 **Responsive Design** — Tailwind CSS + DaisyUI support  
+
 
 
 <h2 align="center">⚙️ Installation & Setup</h2>
