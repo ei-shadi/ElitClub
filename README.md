@@ -141,7 +141,6 @@ node index.js
     <td>Notifications</td>
   </tr>
 </table>
----
 
 <h2 align="center">👥 User Roles</h2>
 
