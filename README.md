@@ -15,22 +15,20 @@
 
 **EliteClub** is a comprehensive Sports Club Management System tailored for a single sports club. It facilitates seamless user registration, court booking, payment tracking, announcements, and admin functionalities with full authentication, authorization, and real-time data operations.
 
----
 
 <h2 align="center">🚀 Features</h2>
 
-✅ Role-based access control (Admin / Member / Guest)  
-✅ Firebase Authentication (Login / Register)  
-✅ Court & session booking with approval system  
-✅ Member management with Firebase user sync  
-✅ Coupon system with validation  
-✅ Announcement creation and updates  
-✅ Stripe-integrated payment tracking  
-✅ Realtime feedback with toast & modal alerts  
-✅ SEO-optimized routing with Helmet Async  
-✅ Responsive design with Tailwind + DaisyUI  
+🛡️ **Role-based Access Control** — Admin / Member / Guest
+🔐 **Firebase Authentication** — Login / Register
+🎾 **Court & Session Booking** — With admin approval system
+👥 **Member Management** — Firebase user sync
+🎟️ **Coupon System** — Smart validation & discounts
+📢 **Announcement Management** — Create & update club news
+💳 **Stripe Payments** — Secure and tracked payments
+⚡ **Realtime Feedback** — Toasts & modals for instant alerts
+🧠 **SEO Optimization** — Helmet Async for dynamic meta tags
+📱 **Responsive UI** — Tailwind CSS + DaisyUI for all devices
 
----
 
 <h2 align="center">⚙️ Installation & Setup</h2>
 
