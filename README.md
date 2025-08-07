@@ -91,8 +91,8 @@ node index.js
 ---
 
 <h2 align="center">🤖 Tech Stack</h2>
-
-| 🛠️ Technology | 💡 Purpose |
+<div align="center">
+  | 🛠️ Technology | 💡 Purpose |
 |---------------|------------|
 | ⚛ **React** | Frontend UI |
 | 🎨 **Tailwind CSS** + 🌼 **DaisyUI** | Styling & Components |
@@ -100,10 +100,12 @@ node index.js
 | 🚂 **Express.js** | Backend Framework |
 | 🍃 **MongoDB** | Database |
 | 🧭 **React Router** | Client Routing |
+| 🧰 **TanStack Query** | Data Fetching & Caching |
+| 💳 **Stripe** | Payment Integration |
 | 🎯 **React Icons** | Icons |
 | 🧠 **React Helmet Async** | SEO Meta |
 | 🔔 **React Toast** & 💬 **SweetAlert2** | Notifications |
-
+</div>
 ---
 
 <h2 align="center">👥 User Roles</h2>
