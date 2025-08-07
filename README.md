@@ -92,17 +92,17 @@ node index.js
 
 <h2 align="center">🤖 Tech Stack</h2>
 
-| Technology | Purpose |
-|------------|---------|
-| ⚛ React | Frontend UI |
-| Tailwind CSS + DaisyUI | Styling & Components |
-| Firebase | Auth & Admin SDK |
-| Express.js | Backend Framework |
-| MongoDB | Database |
-| React Router | Client Routing |
-| React Icons | Icons |
-| React Helmet Async | SEO Meta |
-| React Toast & SweetAlert2 | Notifications |
+| 🛠️ Technology | 💡 Purpose |
+|---------------|------------|
+| ⚛ **React** | Frontend UI |
+| 🎨 **Tailwind CSS** + 🌼 **DaisyUI** | Styling & Components |
+| 🔐 **Firebase** | Auth & Admin SDK |
+| 🚂 **Express.js** | Backend Framework |
+| 🍃 **MongoDB** | Database |
+| 🧭 **React Router** | Client Routing |
+| 🎯 **React Icons** | Icons |
+| 🧠 **React Helmet Async** | SEO Meta |
+| 🔔 **React Toast** & 💬 **SweetAlert2** | Notifications |
 
 ---
 
