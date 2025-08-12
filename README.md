@@ -11,6 +11,16 @@
 
 ---
 
+<h2 align="center">📷 Screenshot</h2>
+
+<div align="center">
+  <img src="https://your-image-link-here.com/eliteclub-screenshot.png" alt="EliteClub Screenshot" width="700" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+</div>
+
+---
+
+---
+
 <h2 align="center">✨ Overview</h2>
 
 **EliteClub** is a comprehensive Sports Club Management System tailored for a single sports club. It facilitates seamless user registration, court booking, payment tracking, announcements, and admin functionalities with full authentication, authorization, and real-time data operations.
