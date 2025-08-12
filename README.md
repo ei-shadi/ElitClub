@@ -11,7 +11,7 @@
 
 ---
 
-<h2 align="center">📷 Interface Snapshots</h2>
+<h2 align="center">📷 Interface Snapshots 🌟</h2>
 
 <div align="center">
   <img src="https://i.ibb.co.com/5XTVKChB/Elite-Club.png" alt="EliteClub Screenshot" width="700" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
