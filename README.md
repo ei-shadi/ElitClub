@@ -142,10 +142,10 @@ Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server`
 
 5. **👀 Let's Go Live:**
 ```bash
-cd eliteclub    ✨Client Side
+cd Eliteclub    ✨Client Side
 npm run dev
 ------------------------------
-cd server       ✨Server Side
+cd Eliteclub-Server       ✨Server Side
 node index.js
 ```
 
