@@ -140,12 +140,12 @@ MONGODB_URI=your_mongodb_uri
 4. **Add Firebase Admin SDK:**  
 Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server` folder.
 
-5. **Run the backend development server:**
+5. **'👀 Let's Go Live:**
 ```bash
-cd eliteclub    # Go For The Live ✨Client Side
+cd eliteclub    ✨Client Side
 npm run dev
--------------
-cd server       # Go For The Live ✨Server Side
+---------------------------------------------------
+cd server       ✨Server Side
 node index.js
 ```
 
