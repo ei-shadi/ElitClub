@@ -101,17 +101,17 @@
 
 ---
 
-<h2 align="center">🖥️ EliteClub Server:</h2>
-
-🌟**Server Code:**
-<a href="https://github.com/ei-shadi/EliteClub-Server.git" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
-
----
-
 <h2 align="center">🌐 Live Site</h2>
 
 🎯 **Visit Live**  
 👉 <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">Open EliteClub Now...</a>
+
+---
+
+<h2 align="center">🖥️ EliteClub Server:</h2>
+
+🌟**Server Code:**
+<a href="https://github.com/ei-shadi/EliteClub-Server.git" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
 
 ---
 
