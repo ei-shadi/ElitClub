@@ -101,6 +101,12 @@
 
 ---
 
+<h2 align="center">🖥️ EliteClub Server Repository:</h2>
+
+[![Server](https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/server.svg)](https://github.com/ei-shadi/eliteclub-server)  
+👉 <a href="https://github.com/ei-shadi/eliteclub-server" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
+
+
 ---
 
 <h2 align="center">🌐 Live Site</h2>
