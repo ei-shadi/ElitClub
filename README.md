@@ -146,20 +146,74 @@ node index.js
 ```
 
 
-<h2 align="center">📦 API Endpoints (Express + MongoDB + Firebase Auth)</h2>
+<div align="center">
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/courts` | Get all court data |
-| GET | `/users?email=` | Get user info by email |
-| GET | `/bookings/pending`, `/bookings/approved`, `/bookings/confirmed` | Get user bookings by status |
-| GET | `/bookings/pending-all`, `/bookings/confirmed-all` | Admin: get all bookings |
-| GET | `/announcements` | Get all announcements |
-| GET | `/coupons`, `/coupons/validate?code=` | Get and validate coupons |
-| POST | `/users`, `/bookings`, `/payments`, `/courts`, `/announcements`, `/coupons` | Create entries |
-| PATCH | `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/bookings/approve/:id` | Update entries |
-| DELETE | `/bookings/:id`, `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/members/:id` | Delete entries |
-| GET | `/payments` | Get user payment history |
+<h2>📦 API Endpoints (Express + MongoDB + Firebase Auth)</h2>
 
-🔐 **Note:** Protected routes require Firebase Bearer Token authentication.
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Endpoint</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td><code>/courts</code></td>
+      <td>Get all court data</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/users?email=</code></td>
+      <td>Get user info by email</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/bookings/pending</code>, <code>/bookings/approved</code>, <code>/bookings/confirmed</code></td>
+      <td>Get user bookings by status</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/bookings/pending-all</code>, <code>/bookings/confirmed-all</code></td>
+      <td>Admin: get all bookings</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/announcements</code></td>
+      <td>Get all announcements</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/coupons</code>, <code>/coupons/validate?code=</code></td>
+      <td>Get and validate coupons</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><code>/users</code>, <code>/bookings</code>, <code>/payments</code>, <code>/courts</code>, <code>/announcements</code>, <code>/coupons</code></td>
+      <td>Create entries</td>
+    </tr>
+    <tr>
+      <td>PATCH</td>
+      <td><code>/courts/:id</code>, <code>/coupons/:id</code>, <code>/announcements/:id</code>, <code>/bookings/approve/:id</code></td>
+      <td>Update entries</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td><code>/bookings/:id</code>, <code>/courts/:id</code>, <code>/coupons/:id</code>, <code>/announcements/:id</code>, <code>/members/:id</code></td>
+      <td>Delete entries</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/payments</code></td>
+      <td>Get user payment history</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>🔐 <strong>Note:</strong> Protected routes require Firebase Bearer Token authentication.</p>
+
+</div>
+
 
