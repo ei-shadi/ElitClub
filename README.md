@@ -14,7 +14,7 @@
 <h2 align="center">📷 Screenshot</h2>
 
 <div align="center">
-  <img src="https://your-image-link-here.com/eliteclub-screenshot.png" alt="EliteClub Screenshot" width="700" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+  <img src="https://i.ibb.co.com/5XTVKChB/Elite-Club.png" alt="EliteClub Screenshot" width="700" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
 </div>
 
 ---
