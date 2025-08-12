@@ -29,64 +29,6 @@
 * 🧠 **SEO Optimization** — Dynamic meta tags via Helmet Async  
 * 💻 **Responsive Design** — Tailwind CSS + DaisyUI support  
 
-
-
-<h2 align="center">⚙️ Installation & Setup</h2>
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/ei-shadi/eliteclub.git
-cd eliteclub
-```
-
-2. **Install frontend and backend dependencies:**
-```bash
-npm install          # inside root or /client folder
-cd server && npm install
-```
-
-3. **Configure environment variables:**  
-Create a `.env` file inside `/server` folder with:
-```
-PORT=5000
-MONGODB_URI=your_mongodb_uri
-```
-
-4. **Add Firebase Admin SDK:**  
-Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server` folder.
-
-5. **Run the backend development server:**
-```bash
-cd server
-node index.js
-```
-
----
-
-<h2 align="center">🌐 Live Site</h2>
-
-🎯 **Visit Live**  
-👉 <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">Open EliteClub Now...</a>
-
----
-
-<h2 align="center">📦 API Endpoints (Express + MongoDB + Firebase Auth)</h2>
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/courts` | Get all court data |
-| GET | `/users?email=` | Get user info by email |
-| GET | `/bookings/pending`, `/bookings/approved`, `/bookings/confirmed` | Get user bookings by status |
-| GET | `/bookings/pending-all`, `/bookings/confirmed-all` | Admin: get all bookings |
-| GET | `/announcements` | Get all announcements |
-| GET | `/coupons`, `/coupons/validate?code=` | Get and validate coupons |
-| POST | `/users`, `/bookings`, `/payments`, `/courts`, `/announcements`, `/coupons` | Create entries |
-| PATCH | `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/bookings/approve/:id` | Update entries |
-| DELETE | `/bookings/:id`, `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/members/:id` | Delete entries |
-| GET | `/payments` | Get user payment history |
-
-🔐 **Note:** Protected routes require Firebase Bearer Token authentication.
-
 ---
 <h2 align="center">🤖 Tech Stack</h2>
 
@@ -148,3 +90,61 @@ node index.js
 - **Guest**: Can view public pages, register/login.
 
 ---
+
+---
+
+<h2 align="center">🌐 Live Site</h2>
+
+🎯 **Visit Live**  
+👉 <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">Open EliteClub Now...</a>
+
+---
+
+<h2 align="center">⚙️ Installation & Setup</h2>
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/ei-shadi/eliteclub.git
+cd eliteclub
+```
+
+2. **Install frontend and backend dependencies:**
+```bash
+npm install          # inside root or /client folder
+cd server && npm install
+```
+
+3. **Configure environment variables:**  
+Create a `.env` file inside `/server` folder with:
+```
+PORT=5000
+MONGODB_URI=your_mongodb_uri
+```
+
+4. **Add Firebase Admin SDK:**  
+Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server` folder.
+
+5. **Run the backend development server:**
+```bash
+cd server
+node index.js
+```
+
+
+<h2 align="center">📦 API Endpoints (Express + MongoDB + Firebase Auth)</h2>
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/courts` | Get all court data |
+| GET | `/users?email=` | Get user info by email |
+| GET | `/bookings/pending`, `/bookings/approved`, `/bookings/confirmed` | Get user bookings by status |
+| GET | `/bookings/pending-all`, `/bookings/confirmed-all` | Admin: get all bookings |
+| GET | `/announcements` | Get all announcements |
+| GET | `/coupons`, `/coupons/validate?code=` | Get and validate coupons |
+| POST | `/users`, `/bookings`, `/payments`, `/courts`, `/announcements`, `/coupons` | Create entries |
+| PATCH | `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/bookings/approve/:id` | Update entries |
+| DELETE | `/bookings/:id`, `/courts/:id`, `/coupons/:id`, `/announcements/:id`, `/members/:id` | Delete entries |
+| GET | `/payments` | Get user payment history |
+
+🔐 **Note:** Protected routes require Firebase Bearer Token authentication.
+
