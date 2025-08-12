@@ -141,7 +141,7 @@ Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server`
 
 5. **Run the backend development server:**
 ```bash
-cd server
+cd server 
 node index.js
 ```
 
