@@ -104,7 +104,7 @@
 <h2 align="center">🖥️ EliteClub Server:</h2>
 
 🌟**Server Code:**
-<a href="https://github.com/ei-shadi/eliteclub-server" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
+<a href="https://github.com/ei-shadi/EliteClub-Server.git" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
 
 ---
 
