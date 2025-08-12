@@ -117,22 +117,23 @@
 
 <h2 align="center">⚙️ Installation & Setup</h2>
 
-1. **Clone the repository:**
+1. **Clone The Repository For Frontend:**
 ```bash
-git clone https://github.com/ei-shadi/eliteclub.git
+git clone https://github.com/ei-shadi/ElitClub.git
 cd eliteclub
+npm install          # inside root or / client folder
 ```
 
-2. **Install frontend and backend dependencies:**
+2. **Clone The Repository For Backend:**
 ```bash
-npm install          # inside root or /client folder
-cd server && npm install
+git clone https://github.com/ei-shadi/EliteClub-Server.git
+cd server 
+npm install          # inside root or / server folder
 ```
 
 3. **Configure environment variables:**  
 Create a `.env` file inside `/server` folder with:
 ```
-PORT=5000
 MONGODB_URI=your_mongodb_uri
 ```
 
@@ -141,7 +142,10 @@ Place your Firebase Admin SDK file as `firebase-admin-key.json` in the `/server`
 
 5. **Run the backend development server:**
 ```bash
-cd server 
+cd eliteclub    # Go For The Live ✨Client Side
+npm run dev
+-------------
+cd server       # Go For The Live ✨Server Side
 node index.js
 ```
 
