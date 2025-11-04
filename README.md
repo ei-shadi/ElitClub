@@ -1,4 +1,3 @@
-
 <div align="center">
   <h1>
     <a href="https://eliteclub-sports.netlify.app/" target="_blank" rel="noopener noreferrer">
@@ -20,12 +19,11 @@
 
 ---
 
----
-
 <h2 align="center">✨ Project Overview</h2>
 
 **EliteClub** is a comprehensive Sports Club Management System tailored for a single sports club. It facilitates seamless user registration, court booking, payment tracking, announcements, and admin functionalities with full authentication, authorization, and real-time data operations.
 
+---
 
 <h2 align="center">🚀 Features</h2>
 
@@ -41,6 +39,7 @@
 * 💻 **Responsive Design** — Tailwind CSS + DaisyUI support  
 
 ---
+
 <h2 align="center">🤖 Tech Stack</h2>
 
 <table align="center">
@@ -94,11 +93,22 @@
   </tr>
 </table>
 
+---
+
 <h2 align="center">👥 User Roles</h2>
 
 - **Admin**: Full access to manage users, bookings, courts, payments, and announcements.  
 - **Member**: Can book courts, view announcements, and apply coupons.  
 - **Guest**: Can view public pages, register/login.
+
+---
+
+<h2 align="center">🔑 Admin Access</h2>
+
+To check the **Admin Dashboard**, use the credentials below:  
+----------------------------------------------------------  
+📧 **Admin Email:** `eftajulislam.shaadi@gmail.com`  
+🔐 **Admin Password:** `Ban$$Ka05i!`  
 
 ---
 
@@ -111,7 +121,7 @@
 
 <h2 align="center">🖥️ EliteClub Server:</h2>
 
-🌟**Server Code:**
+🌟**Server Code:**  
 <a href="https://github.com/ei-shadi/EliteClub-Server.git" target="_blank" rel="noopener noreferrer">https://github.com/ei-shadi/eliteclub-server</a>
 
 ---
@@ -151,6 +161,7 @@ cd Eliteclub-Server       ✨Server Side
 node index.js
 ```
 
+---
 
 <div align="center">
 
@@ -221,5 +232,3 @@ node index.js
 <p>🔐 <strong>Note:</strong> Protected routes require Firebase Bearer Token authentication.</p>
 
 </div>
-
-
